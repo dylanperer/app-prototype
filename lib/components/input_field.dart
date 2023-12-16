@@ -20,9 +20,19 @@ class AppInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-        decoration: InputDecoration(
-            hintText: 'email',
-            prefixIcon: const Icon(Icons.alternate_email),
-            prefixIconColor: iconColor(context)));
+      decoration: InputDecoration(
+          hintText: 'email',
+          prefixIcon: Container(margin: const EdgeInsets.only(right: 8),  child: const Icon(Icons.alternate_email)),
+          prefixIconConstraints: BoxConstraints.tight(Size(32,24)),
+          prefixIconColor: iconColor(context),
+          suffixIcon: GestureDetector(
+            onTap: ()=>print('tap,,,'),
+            child: Container(
+                color: Colors.blue,
+                constraints: BoxConstraints.tight(const Size(60,24)),
+                alignment: Alignment.center,
+                child: const Text('Forgot?')),
+          )),
+    );
   }
 }

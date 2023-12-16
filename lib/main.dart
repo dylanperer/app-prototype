@@ -1,7 +1,7 @@
 import 'package:app/theme/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 
-import 'components/app_input_field.dart';
+import 'components/input_field.dart';
 
 void main() {
   runApp(Main());
