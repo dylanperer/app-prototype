@@ -1,7 +1,6 @@
-import 'package:app/theme/color_schemes.g.dart';
+import 'package:app/screens/authentication/app_sign_in_screen.dart';
+import 'package:app/theme/defaults/color_schemes.g.dart';
 import 'package:flutter/material.dart';
-
-import 'components/input_field.dart';
 
 void main() {
   runApp(Main());
@@ -12,19 +11,12 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         themeMode: ThemeMode.light,
-        theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-        darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-        home: Scaffold(
+        theme: ThemeData(useMaterial3: true, fontFamily: 'dmSans', colorScheme: lightColorScheme),
+        darkTheme: ThemeData(useMaterial3: true, fontFamily: 'dmSans', colorScheme: darkColorScheme),
+        home: const Scaffold(
             body: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                AppInputField(),
-                AppInputField(),
-              ],
-            ),
-          ),
-        )));
+                child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                    child: SignInScreen()))));
   }
 }
