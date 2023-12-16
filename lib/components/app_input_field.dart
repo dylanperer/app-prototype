@@ -1,15 +1,24 @@
 import 'package:app/theme/app_colors.dart';
+import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 
+import 'app_text.dart';
+
 class AppInputField extends StatelessWidget {
   final String? hintText;
+  final Icon? prefixIcon;
   final String? suffixText;
   final double? suffixMaxWidth;
   final VoidCallback? onSuffixTap;
-  
+
   const AppInputField(
-      {super.key, this.hintText, this.suffixText, this.suffixMaxWidth, this.onSuffixTap});
+      {super.key,
+      this.hintText,
+      this.suffixText,
+      this.suffixMaxWidth,
+      this.onSuffixTap,
+      this.prefixIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +32,12 @@ class AppInputField extends StatelessWidget {
             borderSide: BorderSide(color: AppColors.stone_350, width: 1.0),
           ),
           hintText: hintText,
-          hintStyle: const TextStyle(color: AppColors.stone_350),
-          prefixIcon: Container(
-              margin: const EdgeInsets.only(right: 8),
-              child: const Icon(Icons.alternate_email)),
+          hintStyle: const TextStyle(color: AppColors.stone_400),
+          prefixIcon: prefixIcon != null
+              ? Container(
+                  margin: const EdgeInsets.only(right: 8),
+                  child: prefixIcon)
+              : null,
           prefixIconConstraints: BoxConstraints.tight(const Size(32, 24)),
           prefixIconColor: iconColor(context),
           suffixIcon: suffixText != null
@@ -37,7 +48,11 @@ class AppInputField extends StatelessWidget {
                       constraints:
                           BoxConstraints.tight(Size(suffixMaxWidth ?? 60, 24)),
                       alignment: Alignment.center,
-                      child: Text(style: const TextStyle(color: AppColors.main_500, fontWeight: FontWeight.w600), suffixText ?? '',)),
+                      child: AppText(
+                        text: suffixText ?? '',
+                        size: AppSpacing.space_16,
+                        color: AppColors.main_500,
+                      )),
                 )
               : null),
     );

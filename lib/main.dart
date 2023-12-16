@@ -1,4 +1,5 @@
 import 'package:app/screens/authentication/app_sign_in_screen.dart';
+import 'package:app/theme/app_spacing.dart';
 import 'package:app/theme/defaults/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class Main extends StatelessWidget {
         home: const Scaffold(
             body: SafeArea(
                 child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                    padding: EdgeInsets.symmetric(vertical: 0, horizontal: AppSpacing.space_36),
                     child: SignInScreen()))));
   }
 }
