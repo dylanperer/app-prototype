@@ -36,6 +36,6 @@ class AppColors {
   static const Color stone_900 = Color(0xFF1c1917);
   static const Color stone_950 = Color(0xFF0c0a09);
 
-  static const Color neutral_100 = Color(0x00000fff);
+  static const Color neutral_100 = Color(0xFFFFFFFF);
 
 }

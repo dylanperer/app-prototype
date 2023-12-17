@@ -1,3 +1,4 @@
+import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
@@ -14,8 +15,8 @@ class AppText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text ?? '',
         style: TextStyle(
-            color: color ?? AppColors.stone_700,
-            fontSize: size,
-            fontWeight: fontWeight));
+            color: color ?? AppColors.stone_600,
+            fontSize: size ?? AppSpacing.space_16_5,
+            fontWeight: fontWeight ?? FontWeight.w400));
   }
 }

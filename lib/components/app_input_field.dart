@@ -23,13 +23,16 @@ class AppInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: const TextStyle(color: AppColors.stone_700),
+      style: const TextStyle(color: AppColors.stone_700, fontSize: AppSpacing.space_16_5),
       decoration: InputDecoration(
           focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: AppColors.main_500, width: 1.0),
+            borderSide: BorderSide(color: AppColors.main_500, width: 1.5),
           ),
           enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: AppColors.stone_350, width: 1.0),
+            borderSide: BorderSide(color: AppColors.stone_350, width: 1.5),
+          ),
+          border: const UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.stone_350, width: 1.5),
           ),
           hintText: hintText,
           hintStyle: const TextStyle(color: AppColors.stone_400),
@@ -46,12 +49,12 @@ class AppInputField extends StatelessWidget {
                   child: Container(
                       color: Colors.transparent,
                       constraints:
-                          BoxConstraints.tight(Size(suffixMaxWidth ?? 60, 24)),
-                      alignment: Alignment.center,
+                          BoxConstraints.tight(Size(suffixMaxWidth ?? 80, 24)),
+                      alignment: Alignment.centerRight,
                       child: AppText(
                         text: suffixText ?? '',
-                        size: AppSpacing.space_16,
                         color: AppColors.main_500,
+                        fontWeight: FontWeight.w600,
                       )),
                 )
               : null),
