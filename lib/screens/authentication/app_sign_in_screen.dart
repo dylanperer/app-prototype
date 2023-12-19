@@ -1,5 +1,6 @@
 import 'package:app/components/app_button.dart';
 import 'package:app/components/app_input_field.dart';
+import 'package:app/components/app_interactive_label.dart';
 import 'package:app/components/app_text.dart';
 import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,7 +33,7 @@ class SignInScreen extends StatelessWidget {
               AppText(
                 text: 'Sign in',
                 size: AppSpacing.space_32,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w800,
               ),
               AppText(
                 text: 'Hello there, lets get back into it.',
@@ -63,12 +64,16 @@ class SignInScreen extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: AppCheckBox(isDefaultChecked: true)),
         const AppButton(),
-        Container(
-            // margin: const EdgeInsets.only(bottom: AppSpacing.space_40),
-            child: const AppThirdPartAuth(
-              prefix: AppText(text: 'Or, login with...'),
-              postfix: AppText(text: 'Don\'t have one yet? Create account'),
-            ))
+        const AppThirdPartAuth(
+          prefix: AppText(text: 'Or, login with...'),
+          postfix: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppText(text: 'Don\'t have one yet? '),
+              AppInteractiveLabel(text:'Create account')
+            ],
+          ),
+        )
       ],
     );
   }

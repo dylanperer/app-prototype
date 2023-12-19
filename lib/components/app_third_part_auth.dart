@@ -1,3 +1,4 @@
+import 'package:app/components/app_touchable_opacity.dart';
 import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -19,10 +20,10 @@ class AppThirdPartAuth extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TouchableOpacity(child: SvgPicture.asset('assets/svg/google.svg')),
-            TouchableOpacity(
+            AppTouchableOpacity(child: SvgPicture.asset('assets/svg/google.svg')),
+            AppTouchableOpacity(
                 child: SvgPicture.asset('assets/svg/facebook.svg')),
-            TouchableOpacity(child: SvgPicture.asset('assets/svg/apple.svg')),
+            AppTouchableOpacity(child: SvgPicture.asset('assets/svg/apple.svg')),
           ],
         ),
         const Gap(AppSpacing.space_40),

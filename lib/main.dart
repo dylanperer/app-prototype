@@ -4,8 +4,10 @@ import 'package:app/theme/app_colors.dart';
 import 'package:app/theme/app_spacing.dart';
 import 'package:app/theme/defaults/color_schemes.g.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
+  debugRepaintRainbowEnabled  = false;
   runApp(Main());
 }
 
@@ -19,11 +21,11 @@ class Main extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: ThemeData(
             useMaterial3: true,
-            fontFamily: 'inter',
+            fontFamily: 'Mulish',
             colorScheme: lightColorScheme),
         darkTheme: ThemeData(
             useMaterial3: true,
-            fontFamily: 'inter',
+            fontFamily: 'Mulish',
             colorScheme: darkColorScheme),
         home: Scaffold(
             body: SafeArea(

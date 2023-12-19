@@ -4,12 +4,14 @@ import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 
+import 'app_touchable_opacity.dart';
+
 class AppButton extends StatelessWidget {
   const AppButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return TouchableOpacity(
+    return AppTouchableOpacity(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 0, horizontal: AppSpacing.space_6),
         decoration: const BoxDecoration(
@@ -29,7 +31,7 @@ class AppButton extends StatelessWidget {
                 text: 'Sign in',
                 size: AppSpacing.space_18,
                 color: AppColors.neutral_100,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w800,
               ),
             )),
       ),

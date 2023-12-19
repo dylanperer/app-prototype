@@ -54,7 +54,7 @@ class AppInputField extends StatelessWidget {
                       child: AppText(
                         text: suffixText ?? '',
                         color: AppColors.main_500,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w800,
                       )),
                 )
               : null),

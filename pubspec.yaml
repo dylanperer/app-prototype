@@ -38,6 +38,7 @@ dependencies:
   touchable_opacity: ^1.2.0
   gap: ^3.0.1
   flutter_svg: ^2.0.9
+  flutter_animate: ^4.3.0
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +97,13 @@ flutter:
          - asset: fonts/inter/Inter-Regular.ttf
          - asset: fonts/inter/Inter-SemiBold.ttf
          - asset: fonts/inter/Inter-Light.ttf
+
+     - family: Mulish
+       fonts:
+         - asset: fonts/Mulish/Mulish-Light.ttf
+         - asset: fonts/Mulish/Mulish-Regular.ttf
+         - asset: fonts/Mulish/Mulish-SemiBold.ttf
+         - asset: fonts/Mulish/Mulish-Bold.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
