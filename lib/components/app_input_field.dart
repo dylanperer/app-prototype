@@ -23,16 +23,20 @@ class AppInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: const TextStyle(color: AppColors.stone_700, fontSize: AppSpacing.space_16_5),
+      style: const TextStyle(
+          color: AppColors.stone_700, fontSize: AppSpacing.space_16_5),
       decoration: InputDecoration(
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: AppColors.main_500, width: 1.5),
+          focusedBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: AppColors.main_500, width: 1),
           ),
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: AppColors.stone_350, width: 1.5),
+          enabledBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: AppColors.stone_350, width: 1),
           ),
-          border: const UnderlineInputBorder(
-            borderSide: BorderSide(color: AppColors.stone_350, width: 1.5),
+          border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: AppColors.stone_350, width: 1),
           ),
           hintText: hintText,
           hintStyle: const TextStyle(color: AppColors.stone_400),
@@ -41,16 +45,16 @@ class AppInputField extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 8),
                   child: prefixIcon)
               : null,
-          prefixIconConstraints: BoxConstraints.tight(const Size(32, 24)),
+          // prefixIconConstraints: BoxConstraints.tight(const Size(60, 24)),
           prefixIconColor: iconColor(context),
           suffixIcon: suffixText != null
               ? TouchableOpacity(
                   onTap: onSuffixTap,
                   child: Container(
                       color: Colors.transparent,
-                      constraints:
-                          BoxConstraints.tight(Size(suffixMaxWidth ?? 80, 24)),
-                      alignment: Alignment.centerRight,
+                      constraints: BoxConstraints.tight(
+                          Size(suffixMaxWidth ?? 80, 24)),
+                      alignment: Alignment.center,
                       child: AppText(
                         text: suffixText ?? '',
                         color: AppColors.main_500,

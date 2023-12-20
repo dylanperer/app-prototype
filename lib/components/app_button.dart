@@ -2,22 +2,51 @@ import 'package:app/components/app_text.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
-import 'package:touchable_opacity/touchable_opacity.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import 'app_touchable_opacity.dart';
 
-class AppButton extends StatelessWidget {
-  const AppButton({super.key});
+class AppButton extends StatefulWidget {
+  final Future<void> Function() onTap;
+
+  const AppButton({super.key, required this.onTap});
+
+  @override
+  State<AppButton> createState() => _AppButtonState();
+}
+
+class _AppButtonState extends State<AppButton> {
+  bool _isLoading = false;
+
+  void _onTap() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    await widget.onTap();
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return AppTouchableOpacity(
+      isEnabled: !_isLoading,
+      onTap: _onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: AppSpacing.space_6),
+        padding: const EdgeInsets.symmetric(
+            vertical: 0, horizontal: AppSpacing.space_6),
         decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(AppSpacing.space_56)),
+            borderRadius:
+                BorderRadius.all(Radius.circular(AppSpacing.space_56)),
             boxShadow: [
-              BoxShadow(offset: Offset(0, 0), spreadRadius: -14, color: Colors.black, blurRadius: 16)
+              BoxShadow(
+                  offset: Offset(0, 0),
+                  spreadRadius: -14,
+                  color: Colors.black,
+                  blurRadius: 16)
             ]),
         child: Container(
             constraints:
@@ -26,12 +55,28 @@ class AppButton extends StatelessWidget {
                 color: AppColors.main_500,
                 borderRadius:
                     BorderRadius.all(Radius.circular(AppSpacing.space_56))),
-            child: const Align(
-              child: AppText(
-                text: 'Sign in',
-                size: AppSpacing.space_18,
-                color: AppColors.neutral_100,
-                fontWeight: FontWeight.w800,
+            child: Align(
+              child: RepaintBoundary(
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    const CircularProgressIndicator(
+                      color: AppColors.neutral_100,
+                      backgroundColor: AppColors.stone_350,
+                      strokeWidth: 4.5,
+                    )
+                        .animate(target: _isLoading ? 1 : 0)
+                        .fade(duration: 10.ms, curve: Curves.easeInOut),
+                    const AppText(
+                      text: 'Sign in',
+                      size: AppSpacing.space_18,
+                      color: AppColors.neutral_100,
+                      fontWeight: FontWeight.w800,
+                    )
+                        .animate(target: _isLoading ? 0 : 1)
+                        .fade(duration: 10.ms, curve: Curves.easeInOut),
+                  ],
+                ),
               ),
             )),
       ),

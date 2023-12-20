@@ -4,8 +4,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 class AppTouchableOpacity extends StatefulWidget {
   final Widget child;
   final GestureTapCallback? onTap;
+  final bool? isEnabled;
 
-  const AppTouchableOpacity({super.key, required this.child, this.onTap});
+  const AppTouchableOpacity({super.key, required this.child, this.onTap, this.isEnabled});
 
   @override
   State<AppTouchableOpacity> createState() => _AppTouchableOpacityState();
@@ -20,7 +21,9 @@ class _AppTouchableOpacityState extends State<AppTouchableOpacity> {
       child: GestureDetector(
           onTap: widget.onTap,
           onTapDown: (x) => setState(() {
-            _isTapDown = true;
+            if(widget.isEnabled == true){
+              _isTapDown = true;
+            }
           }),
           onTapUp:(x) => setState(() {
             _isTapDown = false;
