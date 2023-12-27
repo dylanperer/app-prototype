@@ -33,7 +33,7 @@ class _AppButtonState extends State<AppButton> {
   @override
   Widget build(BuildContext context) {
     return AppTouchableOpacity(
-      isDisabled: !_isLoading,
+      isDisabled: _isLoading,
       onTap: _onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(

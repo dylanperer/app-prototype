@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 
 class AppInteractiveLabel extends StatelessWidget {
   final String text;
+  final GestureTapCallback? onTap;
 
-  const AppInteractiveLabel({super.key, required this.text});
+  const AppInteractiveLabel({super.key, required this.text, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return AppTouchableOpacity(child: AppText(text: text, color: AppColors.main_500, fontWeight: FontWeight.w800,));
+    return AppTouchableOpacity(onTap: onTap, child: AppText(text: text, color: AppColors.main_500, fontWeight: FontWeight.w800,));
   }
 }

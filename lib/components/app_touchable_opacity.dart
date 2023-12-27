@@ -22,7 +22,7 @@ class _AppTouchableOpacityState extends State<AppTouchableOpacity> {
       child: GestureDetector(
               onTap: widget.onTap,
               onTapDown: (x) => {
-                    if (widget.isDisabled == false)
+                    if (widget.isDisabled == null || widget.isDisabled == false)
                       {
                         setState(() {
                           _isTapDown = true;

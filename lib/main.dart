@@ -1,42 +1,30 @@
-import 'package:app/components/app_text.dart';
-import 'package:app/screens/authentication/app_sign_in_screen.dart';
-import 'package:app/theme/app_colors.dart';
-import 'package:app/theme/app_spacing.dart';
+import 'package:app/nav/app_router.dart';
 import 'package:app/theme/defaults/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
-  debugRepaintRainbowEnabled  = false;
-  runApp(Main());
+  debugRepaintRainbowEnabled = false;
+  runApp(const Main());
 }
 
 class Main extends StatelessWidget {
+  const Main({super.key});
+
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height - AppSpacing.space_64;
-
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.light,
-        theme: ThemeData(
-            useMaterial3: true,
-            fontFamily: 'Mulish',
-            colorScheme: lightColorScheme),
-        darkTheme: ThemeData(
-            useMaterial3: true,
-            fontFamily: 'Mulish',
-            colorScheme: darkColorScheme),
-        home: Scaffold(
-            body: SafeArea(
-                child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 0, horizontal: AppSpacing.space_28),
-                    child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        child: SizedBox(
-                          height: h,
-                          child: const SignInScreen(),
-                        ))))));
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.light,
+      theme: ThemeData(
+          useMaterial3: true,
+          fontFamily: 'Mulish',
+          colorScheme: lightColorScheme),
+      darkTheme: ThemeData(
+          useMaterial3: true,
+          fontFamily: 'Mulish',
+          colorScheme: darkColorScheme),
+      routerConfig: AppRouter.router,
+    );
   }
 }

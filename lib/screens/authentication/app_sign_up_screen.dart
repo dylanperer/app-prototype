@@ -19,14 +19,14 @@ import '../../components/app_checkbox.dart';
 import '../../components/app_third_part_auth.dart';
 import '../../icons/app_icons_icons.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   late String? _error;
 
   @override
@@ -71,7 +71,7 @@ class _SignInScreenState extends State<SignInScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppText(
-                text: 'Sign in',
+                text: 'Sign up',
                 size: AppSpacing.space_32,
                 fontWeight: FontWeight.w800,
               ),
@@ -112,11 +112,11 @@ class _SignInScreenState extends State<SignInScreen> {
           postfix: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const AppText(text: 'Don\'t have one yet? '),
+              const AppText(text: 'Already have an account? '),
               AppInteractiveLabel(
-                text: 'Create account',
+                text: 'Sign in',
                 onTap: () {
-                  context.go(AppRouter.signUpRoute);
+                  context.go(AppRouter.signInRoute);
                 },
               )
             ],
