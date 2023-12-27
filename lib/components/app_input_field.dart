@@ -1,3 +1,4 @@
+import 'package:app/components/app_touchable_opacity.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
@@ -27,15 +28,15 @@ class AppInputField extends StatelessWidget {
           color: AppColors.stone_700, fontSize: AppSpacing.space_16_5),
       decoration: InputDecoration(
           focusedBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderRadius: BorderRadius.all(Radius.circular(AppSpacing.space_18)),
             borderSide: BorderSide(color: AppColors.main_500, width: 1),
           ),
           enabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderRadius: BorderRadius.all(Radius.circular(AppSpacing.space_18)),
             borderSide: BorderSide(color: AppColors.stone_350, width: 1),
           ),
           border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderRadius: BorderRadius.all(Radius.circular(AppSpacing.space_18)),
             borderSide: BorderSide(color: AppColors.stone_350, width: 1),
           ),
           hintText: hintText,
@@ -45,15 +46,15 @@ class AppInputField extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 8),
                   child: prefixIcon)
               : null,
-          // prefixIconConstraints: BoxConstraints.tight(const Size(60, 24)),
+          prefixIconConstraints: BoxConstraints.tight(const Size(48, 24)),
           prefixIconColor: iconColor(context),
           suffixIcon: suffixText != null
-              ? TouchableOpacity(
+              ? AppTouchableOpacity(
                   onTap: onSuffixTap,
                   child: Container(
                       color: Colors.transparent,
                       constraints: BoxConstraints.tight(
-                          Size(suffixMaxWidth ?? 80, 24)),
+                          Size(suffixMaxWidth ?? 100, 24)),
                       alignment: Alignment.center,
                       child: AppText(
                         text: suffixText ?? '',

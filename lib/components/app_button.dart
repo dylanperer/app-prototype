@@ -33,7 +33,7 @@ class _AppButtonState extends State<AppButton> {
   @override
   Widget build(BuildContext context) {
     return AppTouchableOpacity(
-      isEnabled: !_isLoading,
+      isDisabled: !_isLoading,
       onTap: _onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -50,7 +50,7 @@ class _AppButtonState extends State<AppButton> {
             ]),
         child: Container(
             constraints:
-                const BoxConstraints.expand(height: AppSpacing.space_64),
+                const BoxConstraints.expand(height: AppSpacing.space_68),
             decoration: const BoxDecoration(
                 color: AppColors.main_500,
                 borderRadius:
@@ -66,7 +66,7 @@ class _AppButtonState extends State<AppButton> {
                       strokeWidth: 4.5,
                     )
                         .animate(target: _isLoading ? 1 : 0)
-                        .fade(duration: 10.ms, curve: Curves.easeInOut),
+                        .fade(duration: 300.ms, curve: Curves.easeInOut),
                     const AppText(
                       text: 'Sign in',
                       size: AppSpacing.space_18,
@@ -74,7 +74,7 @@ class _AppButtonState extends State<AppButton> {
                       fontWeight: FontWeight.w800,
                     )
                         .animate(target: _isLoading ? 0 : 1)
-                        .fade(duration: 10.ms, curve: Curves.easeInOut),
+                        .fade(duration: 300.ms, curve: Curves.easeInOut),
                   ],
                 ),
               ),

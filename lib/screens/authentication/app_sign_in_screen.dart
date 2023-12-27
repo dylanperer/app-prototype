@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:app/components/app_button.dart';
+import 'package:app/components/app_error.dart';
 import 'package:app/components/app_input_field.dart';
 import 'package:app/components/app_interactive_label.dart';
 import 'package:app/components/app_text.dart';
 import 'package:app/external/api.dart';
 import 'package:app/external/app_api.dart';
 import 'package:app/theme/app_spacing.dart';
-import 'package:app/utils/constants/app_errors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,17 +25,17 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  late String _error;
+  late String? _error;
 
   @override
   void initState() {
     super.initState();
-    _error = '';
+    _error = null;
   }
 
   Future<void> _onSignIn() async {
     setState(() {
-      _error = '';
+      _error = null;
     });
     var authenticationApi =
         AuthenticationApi(ApiClient(basePath: 'http://192.168.18.39:6969'));
@@ -80,14 +80,14 @@ class _SignInScreenState extends State<SignInScreen> {
             ],
           ),
         ),
-        const Column(
+        Column(
           children: [
-            AppInputField(
+            const AppInputField(
               hintText: 'email',
               prefixIcon: Icon(Icons.alternate_email),
             ),
-            Gap(AppSpacing.space_16),
-            AppInputField(
+            const Gap(AppSpacing.space_16),
+            const AppInputField(
               hintText: 'password',
               suffixText: 'Forgot?',
               prefixIcon: Icon(
@@ -95,6 +95,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 size: 20,
               ),
             ),
+            const Gap(AppSpacing.space_16),
+            AppError(error: _error)
           ],
         ),
         const Align(
