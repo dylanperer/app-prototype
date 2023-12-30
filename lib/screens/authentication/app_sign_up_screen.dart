@@ -8,6 +8,7 @@ import 'package:app/components/app_text.dart';
 import 'package:app/external/api.dart';
 import 'package:app/external/app_api.dart';
 import 'package:app/nav/app_router.dart';
+import 'package:app/screens/app_screen_wrapper.dart';
 import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,72 +58,74 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: Axis.vertical,
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Align(
-          child: SvgPicture.asset('assets/svg/logo1.svg'),
-        ),
-        const Align(
-          alignment: Alignment.centerLeft,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppText(
-                text: 'Sign up',
-                size: AppSpacing.space_32,
-                fontWeight: FontWeight.w800,
-              ),
-              AppText(
-                text: 'Hello there, lets get back into it.',
-                size: AppSpacing.space_18,
-              )
-            ],
+    return AppScreenWrapper(
+      child: Flex(
+        direction: Axis.vertical,
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Align(
+            child: SvgPicture.asset('assets/svg/logo1.svg'),
           ),
-        ),
-        Column(
-          children: [
-            const AppInputField(
-              hintText: 'email',
-              prefixIcon: Icon(Icons.alternate_email),
-            ),
-            const Gap(AppSpacing.space_16),
-            const AppInputField(
-              hintText: 'password',
-              suffixText: 'Forgot?',
-              prefixIcon: Icon(
-                AppIcons.lock,
-                size: 20,
-              ),
-            ),
-            const Gap(AppSpacing.space_16),
-            AppError(error: _error)
-          ],
-        ),
-        const Align(
+          const Align(
             alignment: Alignment.centerLeft,
-            child: AppCheckBox(isDefaultChecked: true)),
-        AppButton(
-          onTap: () async => {await _onSignIn()},
-        ),
-        AppThirdPartAuth(
-          prefix: const AppText(text: 'Or, login with...'),
-          postfix: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppText(
+                  text: 'Sign up',
+                  size: AppSpacing.space_32,
+                  fontWeight: FontWeight.w800,
+                ),
+                AppText(
+                  text: 'Hello there, lets get back into it.',
+                  size: AppSpacing.space_18,
+                )
+              ],
+            ),
+          ),
+          Column(
             children: [
-              const AppText(text: 'Already have an account? '),
-              AppInteractiveLabel(
-                text: 'Sign in',
-                onTap: () {
-                  context.go(AppRouter.signInRoute);
-                },
-              )
+              const AppInputField(
+                hintText: 'email',
+                prefixIcon: Icon(Icons.alternate_email),
+              ),
+              const Gap(AppSpacing.space_16),
+              const AppInputField(
+                hintText: 'password',
+                prefixIcon: Icon(
+                  AppIcons.lock,
+                  size: 20,
+                ),
+              ),
+              const Gap(AppSpacing.space_16),
+              AppError(error: _error)
             ],
           ),
-        )
-      ],
+          const Align(
+              alignment: Alignment.centerLeft,
+              child: AppCheckBox(isDefaultChecked: true, text: 'Agree to Terms & Conditions',)),
+          AppButton(
+            text: 'Join',
+            onTap: () async => {await _onSignIn()},
+          ),
+          AppThirdPartAuth(
+            prefix: const AppText(text: 'Or, login with...'),
+            postfix: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const AppText(text: 'Already have an account? '),
+                AppInteractiveLabel(
+                  text: 'Sign in',
+                  onTap: () {
+                    context.go(AppRouter.signInRoute);
+                  },
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

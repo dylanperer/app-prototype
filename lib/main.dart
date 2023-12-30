@@ -24,7 +24,7 @@ class Main extends StatelessWidget {
           useMaterial3: true,
           fontFamily: 'Mulish',
           colorScheme: darkColorScheme),
-      routerConfig: AppRouter.router,
+      routerConfig: AppRouter.buildRouter,
     );
   }
 }

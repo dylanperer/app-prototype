@@ -8,8 +8,9 @@ import 'app_touchable_opacity.dart';
 
 class AppButton extends StatefulWidget {
   final Future<void> Function() onTap;
+  final String text;
 
-  const AppButton({super.key, required this.onTap});
+  const AppButton({super.key, required this.onTap, required this.text});
 
   @override
   State<AppButton> createState() => _AppButtonState();
@@ -67,9 +68,9 @@ class _AppButtonState extends State<AppButton> {
                     )
                         .animate(target: _isLoading ? 1 : 0)
                         .fade(duration: 300.ms, curve: Curves.easeInOut),
-                    const AppText(
-                      text: 'Sign in',
-                      size: AppSpacing.space_18,
+                    AppText(
+                      text: widget.text,
+                      size: AppSpacing.space_20,
                       color: AppColors.neutral_100,
                       fontWeight: FontWeight.w800,
                     )

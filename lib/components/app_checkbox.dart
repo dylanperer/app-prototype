@@ -10,10 +10,12 @@ import 'package:touchable_opacity/touchable_opacity.dart';
 import 'app_touchable_opacity.dart';
 
 class AppCheckBox extends StatefulWidget {
+  final String text;
   final bool? isDefaultChecked;
   final MainAxisAlignment? alignment;
 
-  const AppCheckBox({super.key, this.isDefaultChecked, this.alignment});
+  const AppCheckBox(
+      {super.key, this.isDefaultChecked, this.alignment, required this.text});
 
   @override
   State<AppCheckBox> createState() => _AppCheckBoxState();
@@ -67,8 +69,8 @@ class _AppCheckBoxState extends State<AppCheckBox> {
               ],
             ),
             const Gap(AppSpacing.space_8),
-            const AppText(
-              text: 'Remember me',
+            AppText(
+              text: widget.text,
             ),
           ],
         ));
