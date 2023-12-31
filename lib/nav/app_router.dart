@@ -1,5 +1,6 @@
-import 'package:app/screens/authentication/app_sign_in_screen.dart';
-import 'package:app/screens/authentication/app_sign_up_screen.dart';
+import 'package:app/screens/authentication/sign_in_screen.dart';
+import 'package:app/screens/authentication/sign_up_screen.dart';
+import 'package:app/screens/onboard/onboarding_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -8,10 +9,8 @@ class AppRouter {
   AppRouter._();
 
   static const String signInRoute = '/';
-  static const String signUpRoute = '/sign-up';
-
-  static final GlobalKey<NavigatorState> _safeAreaContainerNavKey =
-      GlobalKey<NavigatorState>();
+  static const String signUpRoute = '/signup';
+  static const String onBoardingRoute = '/onboarding';
 
   static CustomTransitionPage pageTransition(LocalKey? localKey, Widget child) {
     return CustomTransitionPage(
@@ -38,6 +37,11 @@ class AppRouter {
         path: signUpRoute,
         pageBuilder: (context, state) {
           return pageTransition(state.pageKey, const SignUpScreen());
+        }),
+    GoRoute(
+        path: onBoardingRoute,
+        pageBuilder: (context, state) {
+          return pageTransition(state.pageKey, OnBoardingScreen());
         })
   ]);
 }

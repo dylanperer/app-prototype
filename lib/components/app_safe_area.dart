@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../theme/app_spacing.dart';
 
-class AppScreenWrapper extends StatelessWidget {
+class AppSafeArea extends StatelessWidget {
   final Widget child;
 
-  const AppScreenWrapper({super.key, required this.child});
+  const AppSafeArea({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height - AppSpacing.space_64;
+    final double h = MediaQuery.of(context).size.height - AppSpacing.space_64;
+    final double safePadding = MediaQuery.of(context).padding.top;
 
     return Scaffold(
         body: SafeArea(
@@ -19,7 +20,7 @@ class AppScreenWrapper extends StatelessWidget {
                 child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: SizedBox(
-                      height: h,
+                      height: h - safePadding,
                       child: child,
                     )))));
   }

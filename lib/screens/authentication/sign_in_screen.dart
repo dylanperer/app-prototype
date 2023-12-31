@@ -8,15 +8,14 @@ import 'package:app/components/app_text.dart';
 import 'package:app/external/api.dart';
 import 'package:app/external/app_api.dart';
 import 'package:app/nav/app_router.dart';
-import 'package:app/screens/app_screen_wrapper.dart';
 import 'package:app/theme/app_spacing.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../components/app_checkbox.dart';
+import '../../components/app_safe_area.dart';
 import '../../components/app_third_part_auth.dart';
 import '../../icons/app_icons_icons.dart';
 
@@ -37,6 +36,9 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   Future<void> _onSignIn() async {
+    context.go(AppRouter.onBoardingRoute);
+
+    return;
     setState(() {
       _error = null;
     });
@@ -58,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AppScreenWrapper(
+    return AppSafeArea(
       child: Flex(
         direction: Axis.vertical,
         mainAxisSize: MainAxisSize.min,
