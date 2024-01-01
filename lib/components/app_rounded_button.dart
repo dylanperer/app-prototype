@@ -1,14 +1,17 @@
+import 'package:app/components/app_touchable_opacity.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
-import 'package:touchable_opacity/touchable_opacity.dart';
 
 class AppRoundedButton extends StatelessWidget {
-  const AppRoundedButton({super.key});
+  final GestureTapCallback onTap;
+
+  const AppRoundedButton({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return TouchableOpacity(
+    return AppTouchableOpacity(
+        onTap: onTap,
         child: Container(
             decoration: const BoxDecoration(
                 color: AppColors.main_500,

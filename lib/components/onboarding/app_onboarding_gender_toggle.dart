@@ -1,21 +1,33 @@
 import 'package:app/components/app_touchable_opacity.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../theme/app_colors.dart';
-import '../theme/app_spacing.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_spacing.dart';
 
-class AppGenderToggle extends StatefulWidget {
-  const AppGenderToggle({super.key});
+class AppOnboardingGenderToggle extends StatefulWidget {
+  final Function(bool isToggled) onToggle;
+  final bool? isDefaultChecked;
+
+  const AppOnboardingGenderToggle(
+      {super.key, required this.onToggle, this.isDefaultChecked});
 
   @override
-  State<AppGenderToggle> createState() => _AppGenderToggleState();
+  State<AppOnboardingGenderToggle> createState() =>
+      _AppOnboardingGenderToggleState();
 }
 
-class _AppGenderToggleState extends State<AppGenderToggle> {
+class _AppOnboardingGenderToggleState extends State<AppOnboardingGenderToggle> {
   bool _isToggled = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.isDefaultChecked != null) {
+      _isToggled = widget.isDefaultChecked!;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +36,7 @@ class _AppGenderToggleState extends State<AppGenderToggle> {
         setState(() {
           _isToggled = !_isToggled;
         });
-        print(_isToggled);
+        widget.onToggle(_isToggled);
       },
       child: RepaintBoundary(
         child: Stack(

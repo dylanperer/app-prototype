@@ -1,6 +1,6 @@
+import 'package:app/screens/onboard/common/dob_screen.dart';
 import 'package:app/screens/onboard/common/gender_screen.dart';
 import 'package:app/theme/app_colors.dart';
-import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -11,7 +11,7 @@ import '../../components/app_safe_area.dart';
 
 class OnBoardingSettings {
   String gender = 'F';
-  int age = 0;
+  DateTime? dob;
 }
 
 class OnBoardingScreen extends StatefulWidget {
@@ -19,6 +19,10 @@ class OnBoardingScreen extends StatefulWidget {
   final PageController _pageController = PageController();
 
   OnBoardingScreen({super.key});
+
+  _goToPage() {
+    _pageController.nextPage(duration: const Duration(milliseconds: 600), curve: Curves.easeIn);
+  }
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -36,6 +40,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             children: [
               GenderScreen(
                 onBoardSettings: widget._onBoardSettings,
+              ),
+              DobScreen(
+                onBoardSettings: widget._onBoardSettings,
               )
             ],
           ),
@@ -49,7 +56,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   activeDotColor: AppColors.main_500),
             ),
           ),
-          const Positioned(right: 0, child: AppRoundedButton()),
+          Positioned(
+              right: 0,
+              child: AppRoundedButton(
+                onTap: widget._goToPage,
+              )),
         ],
       ),
     );
