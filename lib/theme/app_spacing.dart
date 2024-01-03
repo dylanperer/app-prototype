@@ -10,10 +10,13 @@ class AppSpacing{
   static const double space_10 = 10.0;
   static const double space_12 = 12.0;
   static const double space_14 = 14.0;
+  static const double space_15 = 15.0;
   static const double space_16 = 16.0;
   static const double space_16_5 = 16.5;
   static const double space_18 = 18.0;
   static const double space_20 = 20.0;
+  static const double space_21 = 21.0;
+  static const double space_22 = 22.0;
   static const double space_24 = 24.0;
   static const double space_28 = 28.0;
   static const double space_32 = 32.0;
@@ -27,4 +30,8 @@ class AppSpacing{
   static const double space_72 = 72.0;
   static const double space_80 = 80.0;
   static const double space_96 = 96.0;
+
+
+  static const double max = 9999.0;
+
 }

@@ -21,6 +21,12 @@ class _AppErrorState extends State<AppError> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _textAnimationController.dispose();
+  }
+
+  @override
   void didUpdateWidget(covariant AppError oldWidget) {
     super.didUpdateWidget(oldWidget);
     _textAnimationController.reset();

@@ -11,6 +11,6 @@ class AppInteractiveLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppTouchableOpacity(onTap: onTap, child: AppText(text: text, color: AppColors.main_500, fontWeight: FontWeight.w800,));
+    return AppTouchableOpacity(onTap: onTap, child: AppText(text: text, color: AppColors.main_400, fontWeight: FontWeight.w800,));
   }
 }

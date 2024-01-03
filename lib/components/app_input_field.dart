@@ -12,6 +12,7 @@ class AppInputField extends StatelessWidget {
   final String? suffixText;
   final double? suffixMaxWidth;
   final VoidCallback? onSuffixTap;
+  final ValueChanged<String>? onSubmitted;
 
   const AppInputField(
       {super.key,
@@ -19,32 +20,36 @@ class AppInputField extends StatelessWidget {
       this.suffixText,
       this.suffixMaxWidth,
       this.onSuffixTap,
-      this.prefixIcon});
+      this.prefixIcon,
+      this.onSubmitted});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onSubmitted: onSubmitted,
       style: const TextStyle(
           color: AppColors.stone_700, fontSize: AppSpacing.space_16_5),
       decoration: InputDecoration(
           focusedBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppSpacing.space_18)),
+            borderRadius:
+                BorderRadius.all(Radius.circular(AppSpacing.space_18)),
             borderSide: BorderSide(color: AppColors.main_500, width: 1),
           ),
           enabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppSpacing.space_18)),
+            borderRadius:
+                BorderRadius.all(Radius.circular(AppSpacing.space_18)),
             borderSide: BorderSide(color: AppColors.stone_350, width: 1),
           ),
           border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppSpacing.space_18)),
+            borderRadius:
+                BorderRadius.all(Radius.circular(AppSpacing.space_18)),
             borderSide: BorderSide(color: AppColors.stone_350, width: 1),
           ),
           hintText: hintText,
           hintStyle: const TextStyle(color: AppColors.stone_400),
           prefixIcon: prefixIcon != null
               ? Container(
-                  margin: const EdgeInsets.only(right: 8),
-                  child: prefixIcon)
+                  margin: const EdgeInsets.only(right: 8), child: prefixIcon)
               : null,
           prefixIconConstraints: BoxConstraints.tight(const Size(48, 24)),
           prefixIconColor: iconColor(context),
@@ -53,8 +58,8 @@ class AppInputField extends StatelessWidget {
                   onTap: onSuffixTap,
                   child: Container(
                       color: Colors.transparent,
-                      constraints: BoxConstraints.tight(
-                          Size(suffixMaxWidth ?? 100, 24)),
+                      constraints:
+                          BoxConstraints.tight(Size(suffixMaxWidth ?? 100, 24)),
                       alignment: Alignment.center,
                       child: AppText(
                         text: suffixText ?? '',

@@ -1,9 +1,10 @@
+import 'package:app/theme/app_colors.dart';
 import 'package:app/utils/helpers/app_helper.dart';
 import 'package:flutter/material.dart';
 
-import '../../theme/app_spacing.dart';
-import '../app_text.dart';
-import '../app_touchable_opacity.dart';
+import '../theme/app_spacing.dart';
+import 'app_text.dart';
+import 'app_touchable_opacity.dart';
 
 class AppOnboardingDateSelector extends StatefulWidget {
   final Function(DateTime date) onDateSelected;
@@ -82,18 +83,21 @@ class _AppOnboardingDateSelectorState extends State<AppOnboardingDateSelector> {
           AppText(
             text: _selectedDate?.day != null
                 ? '${AppHelper.leftPadIntZeroToNine(_selectedDate?.day)} / '
-                : 'DD /',
+                : 'day /',
+            color: _selectedDate?.day != null ? null : AppColors.stone_400,
             size: AppSpacing.space_24,
           ),
           AppText(
               text: _selectedDate?.month != null
                   ? '${AppHelper.leftPadIntZeroToNine(_selectedDate?.month)} / '
-                  : ' MM /',
+                  : ' month /',
+              color: _selectedDate?.day != null ? null : AppColors.stone_400,
               size: AppSpacing.space_24),
           AppText(
               text: _selectedDate?.year != null
                   ? AppHelper.leftPadIntZeroToNine(_selectedDate?.year)
-                  : ' YYYY',
+                  : ' year',
+              color: _selectedDate?.day != null ? null : AppColors.stone_400,
               size: AppSpacing.space_24),
         ],
       ),
