@@ -17,27 +17,49 @@ class AppOnboardingGenderToggle extends StatefulWidget {
       _AppOnboardingGenderToggleState();
 }
 
-class _AppOnboardingGenderToggleState extends State<AppOnboardingGenderToggle> {
+class _AppOnboardingGenderToggleState extends State<AppOnboardingGenderToggle>
+    with TickerProviderStateMixin {
   bool _isToggled = false;
+  late AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
 
+    _animationController = AnimationController(vsync: this);
+
     if (widget.isDefaultChecked != null) {
       _isToggled = widget.isDefaultChecked!;
+
+      _animationController.duration = Animate.defaultDuration;
+      _isToggled
+          ? _animationController.forward()
+          : _animationController.reverse();
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
+
+  void onTap() {
+    setState(() {
+      _isToggled = !_isToggled;
+    });
+
+    _isToggled
+        ? _animationController.forward()
+        : _animationController.reverse();
+
+    widget.onToggle(_isToggled);
   }
 
   @override
   Widget build(BuildContext context) {
     return AppTouchableOpacity(
-      onTap: () {
-        setState(() {
-          _isToggled = !_isToggled;
-        });
-        widget.onToggle(_isToggled);
-      },
+      onTap: onTap,
       child: RepaintBoundary(
         child: Stack(
           children: [
@@ -47,7 +69,7 @@ class _AppOnboardingGenderToggleState extends State<AppOnboardingGenderToggle> {
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
-                      color: AppColors.stone_350,
+                      color: AppColors.stone_300,
                       width: 1,
                       style: BorderStyle.solid,
                       strokeAlign: BorderSide.strokeAlignInside),
@@ -64,8 +86,12 @@ class _AppOnboardingGenderToggleState extends State<AppOnboardingGenderToggle> {
                       color: AppColors.main_500,
                       borderRadius: BorderRadius.all(
                           Radius.circular(AppSpacing.space_64))),
-                ).animate(target: _isToggled ? 100 : 0).moveX(
-                    end: 100, duration: 320.ms, curve: Curves.easeInOutSine),
+                )
+                    .animate(controller: _animationController, autoPlay: false)
+                    .moveX(
+                        end: 100,
+                        duration: 320.ms,
+                        curve: Curves.easeInOutSine),
                 AnimatedSwitcher(
                     duration: 320.ms,
                     child: Icon(

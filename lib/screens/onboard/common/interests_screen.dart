@@ -1,3 +1,4 @@
+import 'package:app/Services/app_uid_service.dart';
 import 'package:app/components/app_chip_group.dart';
 import 'package:app/components/app_info_text.dart';
 import 'package:app/components/app_input_field.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../Services/app_service_register.dart';
 import '../../../components/app_chip.dart';
 import '../../../components/app_text.dart';
 import '../../../theme/app_spacing.dart';
@@ -12,9 +14,9 @@ import '../onboarding_screen.dart';
 
 class InterestsScreen extends StatefulWidget {
   final OnBoardingSettings onBoardSettings;
-  final uid = const Uuid();
+  final AppUidService uidService = injector<AppUidService>();
 
-  const InterestsScreen({super.key, required this.onBoardSettings});
+  InterestsScreen({super.key, required this.onBoardSettings});
 
   @override
   State<InterestsScreen> createState() => _InterestsScreenState();
@@ -22,24 +24,31 @@ class InterestsScreen extends StatefulWidget {
 
 class _InterestsScreenState extends State<InterestsScreen> {
   List<AppChip> _interests = [];
+  final TextEditingController _texInputController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-
     for (var c in widget.onBoardSettings.interests) {
-      String uid = widget.uid.v1();
+      String uid = widget.uidService.timeUid();
       _interests.add(AppChip(text: c, id: uid, onDelete: ()=> onRemoveInterest(uid)));
     }
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _texInputController.dispose();
+  }
+
   void onAddInterest(String value){
-    String uid = widget.uid.v1();
+    String uid = widget.uidService.timeUid();
     _interests.add(AppChip(text: value, id: uid, onDelete: ()=> onRemoveInterest(uid)));
     widget.onBoardSettings.interests.add(value);
     setState(() {
       _interests = _interests;
     });
+    _texInputController.clear();
   }
 
   void onRemoveInterest(String id){
@@ -51,6 +60,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
       _interests = _interests;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +89,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
               child: Column(
                 children: [
                   AppInputField(
+                    controller: _texInputController,
                     hintText: 'hiking',
                     prefixIcon: const Icon(Icons.interests_rounded),
                     onSubmitted: onAddInterest,

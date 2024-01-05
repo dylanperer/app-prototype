@@ -2,6 +2,7 @@ import 'package:app/components/app_chip.dart';
 import 'package:app/components/app_text.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/theme/app_spacing.dart';
+import 'package:app/utils/helpers/app_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,12 +21,12 @@ class AppChipGroup extends StatelessWidget {
               child: Padding(
                   padding: const EdgeInsets.only(bottom: AppSpacing.space_8),
                   child: AppText(
-                    text: 'Total ${interests.length} selected.',
+                    text: '${interests.length} ${AppHelper.convertPlurals('interest', interests.length, '')} selected.',
                     color: AppColors.stone_600,
                     size: AppSpacing.space_14,
                   ))),
         SizedBox(
-          height: 165,
+          height: 175,
           width: AppSpacing.max,
           child: Scrollbar(
             child: SingleChildScrollView(
@@ -34,7 +35,7 @@ class AppChipGroup extends StatelessWidget {
                 alignment: WrapAlignment.start,
                 verticalDirection: VerticalDirection.up,
                 spacing: AppSpacing.space_4,
-                runSpacing: AppSpacing.space_4,
+                runSpacing: AppSpacing.space_8,
                 children: [...interests],
               ),
             ),

@@ -1,3 +1,4 @@
+import 'package:app/Services/app_service_register.dart';
 import 'package:app/nav/app_router.dart';
 import 'package:app/theme/defaults/color_schemes.g.dart';
 import 'package:app/utils/overrides/app_scroll_behaviour.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/rendering.dart';
 
 void main() {
   debugRepaintRainbowEnabled = false;
+  AppServiceRegister.injectServices();
   runApp(const Main());
 }
 

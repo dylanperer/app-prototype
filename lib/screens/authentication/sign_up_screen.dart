@@ -101,9 +101,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               AppError(error: _error)
             ],
           ),
-          const Align(
+          Align(
               alignment: Alignment.centerLeft,
-              child: AppCheckBox(isDefaultChecked: true, text: 'Agree to Terms & Conditions',)),
+              child: AppCheckBox(isDefaultChecked: true, textPostfix: 'Agree to Terms & Conditions',onChange: (value) => print(''))),
           AppButton(
             text: 'Join',
             onTap: () async => {await _onSignIn()},

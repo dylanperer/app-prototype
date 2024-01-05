@@ -105,9 +105,9 @@ class _SignInScreenState extends State<SignInScreen> {
               AppError(error: _error)
             ],
           ),
-          const Align(
+          Align(
               alignment: Alignment.centerLeft,
-              child: AppCheckBox(isDefaultChecked: true, text: 'Remember me',)),
+              child: AppCheckBox(isDefaultChecked: true, textPostfix: 'Remember me', onChange: (value) => print(''))),
           AppButton(
             text: 'Sign in',
             onTap: () async => {await _onSignIn()},

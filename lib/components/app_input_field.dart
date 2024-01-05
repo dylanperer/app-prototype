@@ -13,6 +13,7 @@ class AppInputField extends StatelessWidget {
   final double? suffixMaxWidth;
   final VoidCallback? onSuffixTap;
   final ValueChanged<String>? onSubmitted;
+  final TextEditingController? controller;
 
   const AppInputField(
       {super.key,
@@ -21,11 +22,12 @@ class AppInputField extends StatelessWidget {
       this.suffixMaxWidth,
       this.onSuffixTap,
       this.prefixIcon,
-      this.onSubmitted});
+      this.onSubmitted, this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       onSubmitted: onSubmitted,
       style: const TextStyle(
           color: AppColors.stone_700, fontSize: AppSpacing.space_16_5),
@@ -33,17 +35,17 @@ class AppInputField extends StatelessWidget {
           focusedBorder: const OutlineInputBorder(
             borderRadius:
                 BorderRadius.all(Radius.circular(AppSpacing.space_18)),
-            borderSide: BorderSide(color: AppColors.main_500, width: 1),
+            borderSide: BorderSide(color: AppColors.main_500, width: 1.2),
           ),
           enabledBorder: const OutlineInputBorder(
             borderRadius:
                 BorderRadius.all(Radius.circular(AppSpacing.space_18)),
-            borderSide: BorderSide(color: AppColors.stone_350, width: 1),
+            borderSide: BorderSide(color: AppColors.stone_300, width: 1.2),
           ),
           border: const OutlineInputBorder(
             borderRadius:
                 BorderRadius.all(Radius.circular(AppSpacing.space_18)),
-            borderSide: BorderSide(color: AppColors.stone_350, width: 1),
+            borderSide: BorderSide(color: AppColors.stone_300, width: 1.2),
           ),
           hintText: hintText,
           hintStyle: const TextStyle(color: AppColors.stone_400),

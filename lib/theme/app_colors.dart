@@ -4,7 +4,7 @@ import 'dart:ui';
 class AppColors {
   AppColors._();
 
-  static const Color main_100 = Color(0x00ffffff);
+  static const Color main_100 = Color(0xFFF0F0FA);
   static const Color main_200 = Color(0x00ffffff);
   static const Color main_300 = Color(0x00ffffff);
   static const Color main_400 = Color(0xFF9180FF);
@@ -38,6 +38,7 @@ class AppColors {
   static const Color stone_950 = Color(0xFF0c0a09);
 
   static const Color neutral_100 = Color(0xFFFFFFFF);
+  static const Color transparent = Color(0x00000000);
 
   static const pastel_01 = Color(0xFFFFE5E5);
   static const pastel_02 = Color(0xFFE0AED0);
