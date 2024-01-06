@@ -5,22 +5,24 @@ import 'package:flutter/material.dart';
 
 class AppRoundedButton extends StatelessWidget {
   final GestureTapCallback onTap;
+  final Color? color;
+  final IconData? icon;
 
-  const AppRoundedButton({super.key, required this.onTap});
+  const AppRoundedButton({super.key, required this.onTap, this.color, this.icon});
 
   @override
   Widget build(BuildContext context) {
     return AppTouchableOpacity(
         onTap: onTap,
         child: Container(
-            decoration: const BoxDecoration(
-                color: AppColors.main_500,
+            decoration: BoxDecoration(
+                color: color ?? AppColors.main_500,
                 borderRadius:
-                    BorderRadius.all(Radius.circular(AppSpacing.space_80))),
+                    const BorderRadius.all(Radius.circular(AppSpacing.space_80))),
             width: AppSpacing.space_80,
             height: AppSpacing.space_80,
-            child: const Icon(
-              Icons.chevron_right_rounded,
+            child: Icon(
+               icon ?? Icons.chevron_right_rounded,
               size: AppSpacing.space_64,
               color: AppColors.neutral_100,
             )));

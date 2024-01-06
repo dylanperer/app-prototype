@@ -21,9 +21,9 @@ class AppChipGroup extends StatelessWidget {
               child: Padding(
                   padding: const EdgeInsets.only(bottom: AppSpacing.space_8),
                   child: AppText(
-                    text: '${interests.length} ${AppHelper.convertPlurals('interest', interests.length, '')} selected.',
+                    text: '${interests.length} selected.',
                     color: AppColors.stone_600,
-                    size: AppSpacing.space_14,
+                    size: AppSpacing.space_12,
                   ))),
         SizedBox(
           height: 175,

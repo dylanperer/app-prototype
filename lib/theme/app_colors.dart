@@ -5,8 +5,8 @@ class AppColors {
   AppColors._();
 
   static const Color main_100 = Color(0xFFF0F0FA);
-  static const Color main_200 = Color(0x00ffffff);
-  static const Color main_300 = Color(0x00ffffff);
+  static const Color main_200 = Color(0xffe9e6ff);
+  static const Color main_300 = Color(0xffd3ccff);
   static const Color main_400 = Color(0xFF9180FF);
   static const Color main_500 = Color(0xFF7965FF);
   static const Color main_600 = Color(0x00ffffff);
@@ -36,6 +36,9 @@ class AppColors {
   static const Color stone_800 = Color(0xFF292524);
   static const Color stone_900 = Color(0xFF1c1917);
   static const Color stone_950 = Color(0xFF0c0a09);
+
+  static const Color green_500 = Color(0xff22c55e);
+  static const Color green_400 = Color(0xff4ade80);
 
   static const Color neutral_100 = Color(0xFFFFFFFF);
   static const Color transparent = Color(0x00000000);

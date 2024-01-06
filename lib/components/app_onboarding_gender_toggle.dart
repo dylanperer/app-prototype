@@ -27,14 +27,11 @@ class _AppOnboardingGenderToggleState extends State<AppOnboardingGenderToggle>
     super.initState();
 
     _animationController = AnimationController(vsync: this);
+    _animationController.duration = Animate.defaultDuration;
 
     if (widget.isDefaultChecked != null) {
       _isToggled = widget.isDefaultChecked!;
-
-      _animationController.duration = Animate.defaultDuration;
-      _isToggled
-          ? _animationController.forward()
-          : _animationController.reverse();
+      playAnimation();
     }
   }
 
@@ -44,15 +41,17 @@ class _AppOnboardingGenderToggleState extends State<AppOnboardingGenderToggle>
     _animationController.dispose();
   }
 
+  void playAnimation(){
+    _isToggled
+        ? _animationController.forward()
+        : _animationController.reverse();
+  }
+
   void onTap() {
     setState(() {
       _isToggled = !_isToggled;
     });
-
-    _isToggled
-        ? _animationController.forward()
-        : _animationController.reverse();
-
+    playAnimation();
     widget.onToggle(_isToggled);
   }
 
