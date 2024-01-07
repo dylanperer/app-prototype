@@ -16,8 +16,13 @@ class AppRadio {
 class AppRadioGroup extends StatefulWidget {
   final Map<String, String> items;
   final Function(String? id) onChange;
+  final String? defaultItemId;
 
-  const AppRadioGroup({super.key, required this.items, required this.onChange});
+  const AppRadioGroup(
+      {super.key,
+      required this.items,
+      required this.onChange,
+      this.defaultItemId});
 
   @override
   State<AppRadioGroup> createState() => _AppRadioGroupState();
@@ -30,14 +35,19 @@ class _AppRadioGroupState extends State<AppRadioGroup> {
   void initState() {
     super.initState();
     widget.items.forEach((key, value) {
-      AppRadio appRadio = AppRadio(key, value, (isChecked) => onChange(key, isChecked));
-      appRadio.isActive = false;
+      AppRadio appRadio =
+          AppRadio(key, value, (isChecked) => onChange(key, isChecked));
+
+      widget.defaultItemId == key
+          ? appRadio.isActive = true
+          : appRadio.isActive = false;
+
       _appRadios.add(appRadio);
     });
   }
 
   void onChange(String id, bool c) {
-    if(!c){
+    if (!c) {
       widget.onChange(null);
     }
     setState(() {
@@ -45,7 +55,7 @@ class _AppRadioGroupState extends State<AppRadioGroup> {
         if (u.id == id && c) {
           u.isActive = true;
           widget.onChange(id);
-        }else{
+        } else {
           u.isActive = false;
         }
         return u;

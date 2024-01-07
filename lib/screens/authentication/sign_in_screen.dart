@@ -64,7 +64,7 @@ class _SignInScreenState extends State<SignInScreen> {
       child: Flex(
         direction: Axis.vertical,
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Align(
             child: SvgPicture.asset('assets/svg/logo1.svg'),
@@ -76,7 +76,7 @@ class _SignInScreenState extends State<SignInScreen> {
               children: [
                 AppText(
                   text: 'Sign in',
-                  size: AppSpacing.space_32,
+                  size: AppSpacing.space_28,
                   fontWeight: FontWeight.w800,
                 ),
                 AppText(

@@ -13,14 +13,19 @@ import '../onboarding_screen.dart';
 
 class PreferredGender extends StatelessWidget {
   final OnBoardingSettings onBoardSettings;
+  final Function(String? value)? onPreferredGenderChange;
   final String? error;
 
-  const PreferredGender({super.key, required this.onBoardSettings, this.error});
+  const PreferredGender(
+      {super.key,
+      required this.onBoardSettings,
+      this.error,
+      this.onPreferredGenderChange});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 90, horizontal: 0),
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.space_72, horizontal: 0),
       child: Flex(
         direction: Axis.vertical,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +35,7 @@ class PreferredGender extends StatelessWidget {
               AppText(
                 text: 'Who do you want to be shown to?',
                 textAlign: TextAlign.center,
-                size: AppSpacing.space_21,
+                size: AppSpacing.space_19,
                 fontWeight: FontWeight.w800,
               ),
               Gap(AppSpacing.space_4),
@@ -39,13 +44,24 @@ class PreferredGender extends StatelessWidget {
               )
             ],
           ),
-          AppRadioGroup(
-            items: const {
-              'men': 'Men.',
-              'women': 'Women.',
-              'both': 'Both men and women.',
-            },
-            onChange: (id) => print(id),
+          Column(
+            children: [
+              AppRadioGroup(
+                defaultItemId: onBoardSettings.preferredGender,
+                items: const {
+                  'men': 'Men.',
+                  'women': 'Women.',
+                  'both': 'Both men and women.',
+                },
+                onChange: (id) {
+                  if (onPreferredGenderChange != null) {
+                    onPreferredGenderChange!(id);
+                  }
+                  onBoardSettings.preferredGender = id;
+                },
+              ),
+              AppError(error: error)
+            ],
           ),
           const SizedBox(
             width: AppSpacing.space_80,

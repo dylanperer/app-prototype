@@ -65,7 +65,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 90, horizontal: 0),
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.space_72, horizontal: 0),
       child: Flex(
         direction: Axis.vertical,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,7 +75,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
               AppText(
                 text: "Share your interests.",
                 textAlign: TextAlign.center,
-                size: AppSpacing.space_21,
+                size: AppSpacing.space_19,
                 fontWeight: FontWeight.w800,
               ),
               Gap(AppSpacing.space_4),

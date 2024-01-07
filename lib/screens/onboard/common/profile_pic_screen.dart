@@ -6,6 +6,7 @@ import 'package:app/theme/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
@@ -43,7 +44,8 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 90, horizontal: 0),
+      padding: const EdgeInsets.symmetric(
+          vertical: AppSpacing.space_72, horizontal: 0),
       child: Flex(
         direction: Axis.vertical,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,7 +55,7 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
               AppText(
                 text: 'Choose your best photo.',
                 textAlign: TextAlign.center,
-                size: AppSpacing.space_21,
+                size: AppSpacing.space_19,
                 fontWeight: FontWeight.w800,
               ),
               Gap(AppSpacing.space_4),
@@ -67,12 +69,14 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
               child: Column(
                 children: <Widget>[
                   AppTouchableOpacity(
-                      child: SvgPicture.asset(
-                    _showFemaleAvatar
-                        ? 'assets/svg/female_avatar.svg'
-                        : 'assets/svg/male_avatar.svg',
-                    height: 200,
-                    width: 200,
+                      child: RepaintBoundary(
+                    child: SvgPicture.asset(
+                      _showFemaleAvatar
+                          ? 'assets/svg/female_avatar.svg'
+                          : 'assets/svg/male_avatar.svg',
+                      height: 200,
+                      width: 200,
+                    ),
                   )),
                   AppError(error: widget.error)
                 ],

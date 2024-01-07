@@ -43,7 +43,7 @@ class GenderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 90, horizontal: 0),
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.space_72, horizontal: 0),
       child: Flex(
         direction: Axis.vertical,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,7 +53,7 @@ class GenderScreen extends StatelessWidget {
               AppText(
                 text: 'Which gender do you identify with?',
                 textAlign: TextAlign.center,
-                size: AppSpacing.space_21,
+                size: AppSpacing.space_19,
                 fontWeight: FontWeight.w800,
               ),
               Gap(AppSpacing.space_4),

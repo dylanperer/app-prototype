@@ -68,7 +68,7 @@ class _AppOnboardingDateSelectorState extends State<AppOnboardingDateSelector> {
             },
             context: context,
             currentDate: getDate18YearsAgo(),
-            firstDate: DateTime(2000),
+            firstDate: DateTime(1900),
             lastDate: DateTime(3000));
         if (date != null) {
           setState(() {
@@ -77,29 +77,33 @@ class _AppOnboardingDateSelectorState extends State<AppOnboardingDateSelector> {
           widget.onDateSelected(date);
         }
       },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AppText(
-            text: _selectedDate?.day != null
-                ? '${AppHelper.leftPadIntZeroToNine(_selectedDate?.day)} / '
-                : 'day /',
-            color: _selectedDate?.day != null ? null : AppColors.stone_400,
-            size: AppSpacing.space_24,
-          ),
-          AppText(
-              text: _selectedDate?.month != null
-                  ? '${AppHelper.leftPadIntZeroToNine(_selectedDate?.month)} / '
-                  : ' month /',
+      child: Container(
+        color: Colors.transparent,
+        padding: const EdgeInsets.all(AppSpacing.space_16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppText(
+              text: _selectedDate?.day != null
+                  ? '${AppHelper.leftPadIntZeroToNine(_selectedDate?.day)} / '
+                  : 'dd /',
               color: _selectedDate?.day != null ? null : AppColors.stone_400,
-              size: AppSpacing.space_24),
-          AppText(
-              text: _selectedDate?.year != null
-                  ? AppHelper.leftPadIntZeroToNine(_selectedDate?.year)
-                  : ' year',
-              color: _selectedDate?.day != null ? null : AppColors.stone_400,
-              size: AppSpacing.space_24),
-        ],
+              size: AppSpacing.space_24,
+            ),
+            AppText(
+                text: _selectedDate?.month != null
+                    ? '${AppHelper.leftPadIntZeroToNine(_selectedDate?.month)} / '
+                    : ' mm /',
+                color: _selectedDate?.day != null ? null : AppColors.stone_400,
+                size: AppSpacing.space_24),
+            AppText(
+                text: _selectedDate?.year != null
+                    ? AppHelper.leftPadIntZeroToNine(_selectedDate?.year)
+                    : ' yyyy',
+                color: _selectedDate?.day != null ? null : AppColors.stone_400,
+                size: AppSpacing.space_24),
+          ],
+        ),
       ),
     );
   }
