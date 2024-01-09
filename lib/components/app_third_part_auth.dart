@@ -3,7 +3,6 @@ import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:touchable_opacity/touchable_opacity.dart';
 
 class AppThirdPartAuth extends StatelessWidget {
   final Widget? prefix;
@@ -23,7 +22,7 @@ class AppThirdPartAuth extends StatelessWidget {
             AppTouchableOpacity(child: SvgPicture.asset('assets/svg/google.svg')),
             AppTouchableOpacity(
                 child: SvgPicture.asset('assets/svg/facebook.svg')),
-            AppTouchableOpacity(child: SvgPicture.asset('assets/svg/apple.svg')),
+            AppTouchableOpacity(child: Image.asset('assets/svg/apple.svg.png')),
           ],
         ),
         const Gap(AppSpacing.space_40),

@@ -1,4 +1,3 @@
-import 'package:another_transformer_page_view/another_transformer_page_view.dart';
 import 'package:app/components/app_touchable_opacity.dart';
 import 'package:app/screens/onboard/common/bio_screen.dart';
 import 'package:app/screens/onboard/common/dob_screen.dart';
@@ -148,25 +147,25 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
               GenderScreen(
                 onBoardSettings: widget._onBoardSettings,
               ),
-              DobScreen(
-                onBoardSettings: widget._onBoardSettings,
-                error: _dobError,
-              ),
-              InterestsScreen(
-                onBoardSettings: widget._onBoardSettings,
-              ),
-              PreferredGender(
-                onBoardSettings: widget._onBoardSettings,
-                error: _preferredGenderError,
-                onPreferredGenderChange: (value) => setState(() {
-                  if (value != null) {
-                    _preferredGenderError = null;
-                  }
-                }),
-              ),
-              BioScreen(
-                onBoardSettings: widget._onBoardSettings,
-              ),
+              // DobScreen(
+              //   onBoardSettings: widget._onBoardSettings,
+              //   error: _dobError,
+              // ),
+              // InterestsScreen(
+              //   onBoardSettings: widget._onBoardSettings,
+              // ),
+              // PreferredGender(
+              //   onBoardSettings: widget._onBoardSettings,
+              //   error: _preferredGenderError,
+              //   onPreferredGenderChange: (value) => setState(() {
+              //     if (value != null) {
+              //       _preferredGenderError = null;
+              //     }
+              //   }),
+              // ),
+              // BioScreen(
+              //   onBoardSettings: widget._onBoardSettings,
+              // ),
               ProfilePictureScreen(
                 onBoardSettings: widget._onBoardSettings,
               )

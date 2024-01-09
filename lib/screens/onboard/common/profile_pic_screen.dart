@@ -3,6 +3,7 @@ import 'package:app/components/app_info_text.dart';
 import 'package:app/components/app_onboarding_date_selector.dart';
 import 'package:app/components/app_text_area.dart';
 import 'package:app/theme/app_colors.dart';
+import 'package:app/utils/helpers/app_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -41,6 +42,11 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
     });
   }
 
+  void _onProfilePicturePlaceholderTap() {
+    AppUi.openBottomSheet(BottomSheetConfiguration(
+        context: context, items: [], snapPoints: [0.2]));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -69,15 +75,16 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
               child: Column(
                 children: <Widget>[
                   AppTouchableOpacity(
+                      onTap: _onProfilePicturePlaceholderTap,
                       child: RepaintBoundary(
-                    child: SvgPicture.asset(
-                      _showFemaleAvatar
-                          ? 'assets/svg/female_avatar.svg'
-                          : 'assets/svg/male_avatar.svg',
-                      height: 200,
-                      width: 200,
-                    ),
-                  )),
+                        child: SvgPicture.asset(
+                          _showFemaleAvatar
+                              ? 'assets/svg/female_avatar.svg'
+                              : 'assets/svg/male_avatar.svg',
+                          height: 200,
+                          width: 200,
+                        ),
+                      )),
                   AppError(error: widget.error)
                 ],
               )),

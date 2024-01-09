@@ -86,20 +86,20 @@ class _AppOnboardingDateSelectorState extends State<AppOnboardingDateSelector> {
             AppText(
               text: _selectedDate?.day != null
                   ? '${AppHelper.leftPadIntZeroToNine(_selectedDate?.day)} / '
-                  : 'dd /',
+                  : 'day /',
               color: _selectedDate?.day != null ? null : AppColors.stone_400,
               size: AppSpacing.space_24,
             ),
             AppText(
                 text: _selectedDate?.month != null
                     ? '${AppHelper.leftPadIntZeroToNine(_selectedDate?.month)} / '
-                    : ' mm /',
+                    : ' month /',
                 color: _selectedDate?.day != null ? null : AppColors.stone_400,
                 size: AppSpacing.space_24),
             AppText(
                 text: _selectedDate?.year != null
                     ? AppHelper.leftPadIntZeroToNine(_selectedDate?.year)
-                    : ' yyyy',
+                    : ' year',
                 color: _selectedDate?.day != null ? null : AppColors.stone_400,
                 size: AppSpacing.space_24),
           ],

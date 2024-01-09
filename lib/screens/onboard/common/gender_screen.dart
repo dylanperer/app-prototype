@@ -1,4 +1,5 @@
 import 'package:app/components/app_interactive_label.dart';
+import 'package:app/utils/helpers/app_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -75,7 +76,7 @@ class GenderScreen extends StatelessWidget {
               AppInteractiveLabel(
                 text: 'More options',
                 onTap: () {
-                  _showMoreOptions(context);
+                  AppUi.openBottomSheet(BottomSheetConfiguration(context: context, items: [], snapPoints: AppUi.defaultBottomSheetSnapPoints));
                 },
               )
             ],
