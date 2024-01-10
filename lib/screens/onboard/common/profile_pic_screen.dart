@@ -1,13 +1,10 @@
+import 'dart:io';
+
 import 'package:app/components/app_error.dart';
 import 'package:app/components/app_info_text.dart';
-import 'package:app/components/app_onboarding_date_selector.dart';
-import 'package:app/components/app_text_area.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/utils/helpers/app_ui.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
@@ -28,6 +25,7 @@ class ProfilePictureScreen extends StatefulWidget {
 }
 
 class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
+  File? _profilePicture;
   bool _showFemaleAvatar = true;
 
   @override
@@ -44,8 +42,65 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
 
   void _onProfilePicturePlaceholderTap() {
     AppUi.openBottomSheet(BottomSheetConfiguration(
-        context: context, items: [], snapPoints: [0.2]));
+        context: context,
+        item: SizedBox(
+          height: 162,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              AppTouchableOpacity(
+                onTap: () async => await _onPickImageFromGallery(),
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.camera_alt,
+                      size: AppSpacing.space_36,
+                      color: AppColors.main_400,
+                    ),
+                    AppText(
+                      text: 'Camera',
+                      fontWeight: FontWeight.w700,
+                    )
+                  ],
+                ),
+              ),
+              AppTouchableOpacity(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.photo_library_rounded,
+                      size: AppSpacing.space_36,
+                      color: AppColors.main_400,
+                    ),
+                    AppText(
+                      text: 'Browse',
+                      fontWeight: FontWeight.w700,
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+        snapPoints: [0.25]));
   }
+
+  Future _onPickImageFromGallery() async {
+    // final pickedImage =
+    // await ImagePicker().pickImage(source: ImageSource.gallery);
+    //
+    // if (pickedImage == null) return;
+    //
+    // setState(() {
+    //   _profilePicture = File(pickedImage.path);
+    // });
+  }
+
+  void _onCamera() {}
 
   @override
   Widget build(BuildContext context) {

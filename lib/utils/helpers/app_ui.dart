@@ -4,10 +4,12 @@ import '../../theme/app_spacing.dart';
 
 class BottomSheetConfiguration {
   final BuildContext context;
-  final List<Widget> items;
+  final Widget? item;
+  final List<Widget>? items;
   late final List<double> snapPoints;
 
-  BottomSheetConfiguration({required this.context, required this.items, required this.snapPoints});
+  BottomSheetConfiguration(
+      {required this.context, this.item, this.items, required this.snapPoints});
 }
 
 class AppUi {
@@ -25,24 +27,26 @@ class AppUi {
         return Container(
           decoration: const BoxDecoration(
               borderRadius:
-                  BorderRadius.all(Radius.circular(AppSpacing.space_32))),
+              BorderRadius.all(Radius.circular(AppSpacing.space_32))),
           padding: const EdgeInsets.symmetric(
               vertical: AppSpacing.space_20, horizontal: 0),
-          child: DraggableScrollableSheet(
+          child: configuration.items != null?  DraggableScrollableSheet(
             snapAnimationDuration: const Duration(milliseconds: 320),
-            maxChildSize: configuration.snapPoints.length > 1 ?  configuration.snapPoints.last:  configuration.snapPoints.last,
+            maxChildSize: configuration.snapPoints.last,
             snap: true,
-            minChildSize: configuration.snapPoints.length > 1 ?  configuration.snapPoints.first:  configuration.snapPoints.first,
-            initialChildSize: configuration.snapPoints.length > 1 ?  configuration.snapPoints.first:  configuration.snapPoints.first,
-            snapSizes: configuration.snapPoints.length > 1 ? configuration.snapPoints: null,
+            minChildSize: configuration.snapPoints.first,
+            initialChildSize: configuration.snapPoints.first,
+            snapSizes: configuration.snapPoints.length > 1
+                ? configuration.snapPoints
+                : null,
             expand: false,
             builder: (_, controller) {
               return ListView.builder(
-                  itemCount: configuration.items.length,
+                  itemCount: configuration.items!.length,
                   controller: controller,
-                  itemBuilder: (_, i) => configuration.items[i]);
+                  itemBuilder: (_, i) => configuration.items![i]);
             },
-          ),
+          ): configuration.item,
         );
       },
     );

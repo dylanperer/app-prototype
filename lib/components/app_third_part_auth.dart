@@ -22,7 +22,7 @@ class AppThirdPartAuth extends StatelessWidget {
             AppTouchableOpacity(child: SvgPicture.asset('assets/svg/google.svg')),
             AppTouchableOpacity(
                 child: SvgPicture.asset('assets/svg/facebook.svg')),
-            AppTouchableOpacity(child: Image.asset('assets/svg/apple.svg.png')),
+            AppTouchableOpacity(child: SvgPicture.asset('assets/svg/apple.svg')),
           ],
         ),
         const Gap(AppSpacing.space_40),
