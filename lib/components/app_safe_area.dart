@@ -24,8 +24,8 @@ class AppSafeArea extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         vertical: 0, horizontal: AppSpacing.space_16),
                     child: SingleChildScrollView(
-                        keyboardDismissBehavior:
-                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        // keyboardDismissBehavior:
+                        //     ScrollViewKeyboardDismissBehavior.onDrag,
                         physics: const BouncingScrollPhysics(),
                         child: SizedBox(
                           height: h - safePadding,

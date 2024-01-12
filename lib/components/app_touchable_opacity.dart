@@ -61,13 +61,16 @@ class _AppTouchableOpacityState extends State<AppTouchableOpacity>
   Widget build(BuildContext context) {
     return RepaintBoundary(
       child: GestureDetector(
-              onTap: _onTap,
+              onTap: (){
+                FocusScope.of(context).unfocus();
+                _onTap();
+              },
               onTapDown: (details) => onTapDown(),
               onTapUp: (x) => _animationController.reverse(),
               onTapCancel: _animationController.reverse,
               child: widget.child)
           .animate(controller: _animationController, autoPlay: false)
-          .fade(end: 0.5, duration: 250.ms, curve: Curves.easeInOut),
+          .fade(end: 0.5, duration: 175.ms, curve: Curves.linear),
     );
   }
 }
