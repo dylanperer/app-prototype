@@ -35,12 +35,13 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen>
     with TickerProviderStateMixin {
   late final AnimationController _backButtonAnimController =
-  AnimationController(vsync: this, duration: Animate.defaultDuration);
+      AnimationController(vsync: this, duration: Animate.defaultDuration);
   late final AnimationController _continueButtonAnimController =
-  AnimationController(vsync: this, duration: Animate.defaultDuration);
+      AnimationController(vsync: this, duration: Animate.defaultDuration);
   late final AnimationController _pageViewAnimController =
-  AnimationController(vsync: this, duration: Animate.defaultDuration);
+      AnimationController(vsync: this, duration: Animate.defaultDuration);
   int _currentPage = 0;
+  bool _isTransitioning = false;
   bool _showBackButton = false;
   String? _dobError;
   String? _preferredGenderError;
@@ -58,48 +59,41 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
     _pageViewAnimController.dispose();
   }
 
-  _onContinue() {
-    switch (_currentPage) {
-      case 1: //dob
-        {
-          if (widget._onBoardSettings.dob == null) {
-            setState(() {
-              _dobError = AppErrors.emptyDob;
-            });
-            break;
-          }
+  Future _onContinue() async{
+    _isTransitioning = true;
 
-          setState(() {
-            _dobError = null;
-          });
-          break;
-        }
-      case 3: //preferred gender
-        {
-          if (widget._onBoardSettings.preferredGender == null) {
-            setState(() {
-              _preferredGenderError = AppErrors.emptyPreferredGender;
-            });
-            break;
-          }
+    if(_currentPage == 1){//dob
+      if(widget._onBoardSettings.dob == null){
+        setState(() {
+          _dobError = AppErrors.emptyDob;
+        });
+        return;
+      }
+    }
 
-          setState(() {
-            _preferredGenderError = null;
-          });
-          break;
-        }
+    if(_currentPage == 3){//dob
+      if(widget._onBoardSettings.preferredGender == null){
+        setState(() {
+          _preferredGenderError = AppErrors.emptyPreferredGender;
+        });
+        return;
+      }
     }
-    if (_dobError == null && _preferredGenderError == null) {
-      _pageViewAnimController.forward().then((value) => widget._pageController
-          .nextPage(
-          duration: const Duration(milliseconds: 320), curve: Curves.linear)
-          .then((value) => _pageViewAnimController.reverse()));
-      ;
-    }
+
+    _currentPage++;
+    await _transitionForward();
+    _isTransitioning = false;
+  }
+
+  Future<void> _transitionForward() async {
+    await _pageViewAnimController.forward().then((value) => widget
+        ._pageController
+        .nextPage(
+            duration: const Duration(milliseconds: 320), curve: Curves.linear)
+        .then((value) => _pageViewAnimController.reverse()));
   }
 
   void onPageViewChange(int value) {
-    _currentPage = value;
     setState(() {
       if (value > 0) {
         _showBackButton = true;
@@ -121,9 +115,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
     if (_showBackButton) {
       _pageViewAnimController.forward().then((value) => widget._pageController
           .previousPage(
-          duration: const Duration(milliseconds: 320), curve: Curves.easeIn)
+              duration: const Duration(milliseconds: 320), curve: Curves.easeIn)
           .then((value) => _pageViewAnimController.reverse()));
-      ;
     }
     setState(() {
       _dobError = null;
@@ -188,20 +181,25 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
             child: SizedBox(
               child: _currentPage == 5
                   ? AppRoundedButton(
-                icon: Icons.check,
-                onTap: onComplete,
-              )
-                  .animate(
-                  controller: _continueButtonAnimController,
-                  autoPlay: false)
-                  .fadeIn(duration: 600.ms)
+                      icon: Icons.check,
+                      onTap: onComplete,
+                    )
+                      .animate(
+                          controller: _continueButtonAnimController,
+                          autoPlay: false)
+                      .fadeIn(duration: 600.ms)
                   : AppRoundedButton(
-                onTap: _onContinue,
-              )
-                  .animate(
-                  controller: _continueButtonAnimController,
-                  autoPlay: false)
-                  .fadeOut(duration: 600.ms),
+                      onTap: () async {
+                        if(_isTransitioning == true) return;
+                        _isTransitioning = true;
+                        await _onContinue();
+                        _isTransitioning = false;
+                      },
+                    )
+                      .animate(
+                          controller: _continueButtonAnimController,
+                          autoPlay: false)
+                      .fadeOut(duration: 600.ms),
             ),
           ),
           Positioned(
@@ -209,21 +207,21 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
             left: 0,
             child: RepaintBoundary(
               child: AppTouchableOpacity(
-                  onTap: onBack,
-                  child: Container(
-                    color: Colors.transparent,
-                    padding: const EdgeInsets.only(
-                      right: AppSpacing.space_16,
-                      bottom: AppSpacing.space_16,
-                    ),
-                    child: const Icon(
-                      Icons.arrow_circle_left_rounded,
-                      color: AppColors.stone_600,
-                      size: AppSpacing.space_48,
-                    ),
-                  ))
+                      onTap: onBack,
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: const EdgeInsets.only(
+                          right: AppSpacing.space_16,
+                          bottom: AppSpacing.space_16,
+                        ),
+                        child: const Icon(
+                          Icons.arrow_circle_left_rounded,
+                          color: AppColors.stone_600,
+                          size: AppSpacing.space_48,
+                        ),
+                      ))
                   .animate(
-                  controller: _backButtonAnimController, autoPlay: false)
+                      controller: _backButtonAnimController, autoPlay: false)
                   .fadeIn(duration: 320.ms),
             ),
           ),
