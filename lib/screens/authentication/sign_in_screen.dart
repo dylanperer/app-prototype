@@ -36,7 +36,7 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   Future<void> _onSignIn() async {
-    context.go(AppRouter.onBoardingRoute);
+    context.go(AppRouter.route(AppRoute.discover));
 
     return;
     setState(() {
@@ -121,7 +121,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 AppInteractiveLabel(
                   text: 'Create account',
                   onTap: () {
-                    context.go(AppRouter.signUpRoute);
+                    context.go(AppRouter.route(AppRoute.signUp));
                   },
                 )
               ],

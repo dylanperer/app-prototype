@@ -6,8 +6,10 @@ import '../theme/app_spacing.dart';
 
 class AppSafeArea extends StatelessWidget {
   final Widget child;
+  final Widget? bottomNavigationBar;
 
-  const AppSafeArea({super.key, required this.child});
+  const AppSafeArea(
+      {super.key, required this.child, this.bottomNavigationBar});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,9 @@ class AppSafeArea extends StatelessWidget {
                                   ),
                                 )
                               : child,
-                        ))))),
+                        )))),
+        bottomNavigationBar: bottomNavigationBar,
+        ),
       ),
     );
   }

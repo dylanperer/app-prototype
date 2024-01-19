@@ -117,7 +117,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 AppInteractiveLabel(
                   text: 'Sign in',
                   onTap: () {
-                    context.go(AppRouter.signInRoute);
+                    context.go(AppRouter.route(AppRoute.signIn));
                   },
                 )
               ],
