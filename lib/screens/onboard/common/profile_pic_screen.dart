@@ -4,7 +4,6 @@ import 'package:app/components/app_error.dart';
 import 'package:app/components/app_info_text.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/utils/helpers/app_ui.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,7 +30,7 @@ class ProfilePictureScreen extends StatefulWidget {
 class _ProfilePictureScreenState extends State<ProfilePictureScreen> with TickerProviderStateMixin{
   File? _profilePicture;
   bool _showFemaleAvatar = true;
-  late AnimationController _animationController = AnimationController(vsync: this, duration: Animate.defaultDuration);
+  late final AnimationController _animationController = AnimationController(vsync: this, duration: Animate.defaultDuration);
 
   @override
   void didUpdateWidget(covariant ProfilePictureScreen oldWidget) {

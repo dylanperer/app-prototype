@@ -1,7 +1,6 @@
 import 'package:app/components/app_error.dart';
 import 'package:app/components/app_info_text.dart';
 import 'package:app/components/app_onboarding_date_selector.dart';
-import 'package:app/theme/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -14,7 +13,6 @@ import '../onboarding_screen.dart';
 class DobScreen extends StatelessWidget {
   final OnBoardingSettings onBoardSettings;
   final String? error;
-
   const DobScreen({super.key, required this.onBoardSettings, this.error});
 
   @override
@@ -41,8 +39,7 @@ class DobScreen extends StatelessWidget {
               alignment: Alignment.center,
               child: Column(
                 children: [
-                  AppOnboardingDateSelector(
-                    defaultDate: onBoardSettings.dob,
+                  AppOnboardingDateSelector( defaultDate: onBoardSettings.dob,
                     onDateSelected: (DateTime date) {
                       onBoardSettings.dob = date;
                       print(onBoardSettings.dob);

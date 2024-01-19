@@ -37,6 +37,19 @@ class AppColors {
   static const Color stone_900 = Color(0xFF1c1917);
   static const Color stone_950 = Color(0xFF0c0a09);
 
+
+  static const Color red_100 = Color(0xFFf5f5f4);
+  static const Color red_200 = Color(0xfffee2e2);
+  static const Color red_300 = Color(0xfffecaca);
+  static const Color red_400 = Color(0xfff87171);
+  static const Color red_500 = Color(0xffef4444);
+  static const Color red_600 = Color(0xffdc2626);
+  static const Color red_700 = Color(0xffb91c1c);
+  static const Color red_800 = Color(0xff991b1b);
+  static const Color red_900 = Color(0xff7f1d1d);
+  static const Color red_950 = Color(0xff450a0a);
+
+
   static const Color green_500 = Color(0xff22c55e);
   static const Color green_400 = Color(0xff4ade80);
 

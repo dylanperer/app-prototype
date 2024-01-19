@@ -1,4 +1,5 @@
 import 'package:app/components/app_text.dart';
+import 'package:app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -37,19 +38,19 @@ class _AppErrorState extends State<AppError> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return RepaintBoundary(
         child: Container(
-      child: AppText(
-        text: widget.error ?? "-",
-        color: widget.error != null ? Colors.red : Colors.transparent,
-      )
-          .animate(controller: _textAnimationController)
-          .moveX(duration: 50.ms, begin: 0, end: 5, curve: Curves.linear)
-          .then()
-          .moveX(duration: 50.ms, begin: 5, end: 0, curve: Curves.linear)
-          .then()
-          .moveX(duration: 50.ms, begin: 0, end: -5, curve: Curves.linear)
-          .then()
-          .moveX(duration: 50.ms, begin: -5, end: 0, curve: Curves.linear),
-    ));
-
+          child: AppText(
+            text: widget.error ?? "-",
+            color: widget.error != null ? AppColors.red_400 : Colors
+                .transparent,
+          )
+              .animate(controller: _textAnimationController)
+              .moveX(duration: 50.ms, begin: 0, end: 5, curve: Curves.linear)
+              .then()
+              .moveX(duration: 50.ms, begin: 5, end: 0, curve: Curves.linear)
+              .then()
+              .moveX(duration: 50.ms, begin: 0, end: -5, curve: Curves.linear)
+              .then()
+              .moveX(duration: 50.ms, begin: -5, end: 0, curve: Curves.linear),
+        ));
   }
 }

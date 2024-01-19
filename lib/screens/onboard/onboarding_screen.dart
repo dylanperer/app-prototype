@@ -112,6 +112,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
   }
 
   void onBack() {
+    if(_currentPage == 0) return;
+
+    _isTransitioning = true;
+
     if (_showBackButton) {
       _pageViewAnimController.forward().then((value) => widget._pageController
           .previousPage(
@@ -122,6 +126,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
       _dobError = null;
       _preferredGenderError = null;
     });
+
+    _currentPage--;
+    _isTransitioning = false;
   }
 
   void onComplete() {}
