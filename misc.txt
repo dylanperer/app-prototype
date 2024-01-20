@@ -1,1 +1,2 @@
 export PATH="$PATH:/Volumes/macUtils/Flutter/flutter/bin"
+flutter run -d 9b07b4b23cdd047a9f51fb60a539765ecea7ac5b --release

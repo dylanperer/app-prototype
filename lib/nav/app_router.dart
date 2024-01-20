@@ -1,3 +1,5 @@
+import 'package:app/components/app_bottom_navigator.dart';
+import 'package:app/screens/app/match/matches_screen.dart';
 import 'package:app/screens/app/messaging/messaging_screen.dart';
 import 'package:app/screens/app/settings/settings_screen.dart';
 import 'package:app/screens/authentication/sign_in_screen.dart';
@@ -5,11 +7,9 @@ import 'package:app/screens/authentication/sign_up_screen.dart';
 import 'package:app/screens/onboard/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../screens/app/bottom_tab_menu.dart';
 import '../screens/app/discover_screen.dart';
 
-enum AppRoute { signIn, signUp, onboarding, discover, messaging, settings }
+enum AppRoute { signIn, signUp, onboarding, discover, matches, messaging, profile }
 
 class AppRouter {
   AppRouter._();
@@ -21,11 +21,12 @@ class AppRouter {
   static const String _app = '/app';
   static const String _discover = 'discover';
   static const String _messaging = 'messaging';
-  static const String _settings = 'settings';
+  static const String _profile = 'profile';
+  static const String _matches = 'matches';
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  static final _discoverKey =
-      GlobalKey<NavigatorState>(debugLabel: 'shell_discover');
+  static final _appNavKey =
+      GlobalKey<NavigatorState>(debugLabel: 'shell');
 
   static String route(AppRoute route) {
     switch (route) {
@@ -39,8 +40,10 @@ class AppRouter {
         return '$_app/$_discover';
       case AppRoute.messaging:
         return '$_app/$_messaging';
-      case AppRoute.settings:
-        return '$_app/$_settings';
+      case AppRoute.profile:
+        return '$_app/$_profile';
+      case AppRoute.matches:
+        return '$_app/$_matches';
     }
   }
 
@@ -85,15 +88,21 @@ class AppRouter {
             routes: [
               StatefulShellRoute.indexedStack(
                   builder: (context, state, navigationShell) {
-                    return BottomTabMenu(navigationShell: navigationShell);
+                    return AppBottomNavigator(navigationShell: navigationShell);
                   },
                   branches: [
-                    StatefulShellBranch(navigatorKey: _discoverKey, routes: [
+                    StatefulShellBranch(navigatorKey: _appNavKey, routes: [
                       GoRoute(
                           path: _discover,
                           pageBuilder: (context, state) {
                             return pageTransition(
                                 state.pageKey, const DiscoverScreen());
+                          }),
+                      GoRoute(
+                          path: _matches,
+                          pageBuilder: (context, state) {
+                            return pageTransition(
+                                state.pageKey, const MatchesScreen());
                           }),
                       GoRoute(
                           path: _messaging,
@@ -102,7 +111,7 @@ class AppRouter {
                                 state.pageKey, const MessagingScreen());
                           }),
                       GoRoute(
-                          path: _settings,
+                          path: _profile,
                           pageBuilder: (context, state) {
                             return pageTransition(
                                 state.pageKey, const SettingsScreen());
