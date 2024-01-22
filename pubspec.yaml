@@ -51,7 +51,7 @@ dependencies:
   jovial_svg: ^1.1.20
   image_picker: ^1.0.7
   permission_handler: ^11.1.0
-  google_nav_bar: ^5.0.6
+  flutter_keyboard_visibility: ^6.0.0
 
 dev_dependencies:
   flutter_test:

@@ -82,9 +82,7 @@ class AppRouter {
             }),
         GoRoute(
             path: _app,
-            builder: (context, state) => Container(
-                  color: Colors.pink,
-                ),
+            redirect: (context, state) => '$_app/$_discover',
             routes: [
               StatefulShellRoute.indexedStack(
                   builder: (context, state, navigationShell) {

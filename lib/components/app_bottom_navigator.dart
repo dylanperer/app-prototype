@@ -1,5 +1,7 @@
+import 'package:app/components/app_chat_input.dart';
 import 'package:app/components/app_safe_area.dart';
 import 'package:app/components/app_text.dart';
+import 'package:app/components/app_top_navigator.dart';
 import 'package:app/components/app_touchable_opacity.dart';
 import 'package:app/nav/app_router.dart';
 import 'package:app/theme/app_colors.dart';
@@ -27,6 +29,7 @@ class AppBottomNavigator extends StatefulWidget {
 
 class _AppBottomNavigatorState extends State<AppBottomNavigator> {
   late Screen _currentScreen;
+  bool _showBottomNav = true;
 
   @override
   void initState() {
@@ -35,14 +38,13 @@ class _AppBottomNavigatorState extends State<AppBottomNavigator> {
   }
 
   void _onTap(Screen screen) {
-    if(screen == _currentScreen) return;
+    if (screen == _currentScreen) return;
 
     setState(() {
       _currentScreen = screen;
     });
 
-    switch(screen){
-
+    switch (screen) {
       case Screen.discover:
         context.go(AppRouter.route(AppRoute.discover));
         break;
@@ -50,59 +52,73 @@ class _AppBottomNavigatorState extends State<AppBottomNavigator> {
         context.go(AppRouter.route(AppRoute.matches));
         break;
       case Screen.messaging:
+
         context.go(AppRouter.route(AppRoute.messaging));
         break;
       case Screen.profile:
         context.go(AppRouter.route(AppRoute.profile));
         break;
     }
+
+    setState(() {
+      _showBottomNav = screen != Screen.messaging;
+    });
+  }
+
+  void _onInputFocus(bool c) {
   }
 
   @override
   Widget build(BuildContext context) {
     return AppSafeArea(
-      bottomNavigationBar: Container(
-        color: AppColors.transparent,
-        constraints: const BoxConstraints.expand(height: 125),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space_16, vertical:AppSpacing.space_36),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _NavButton(
-                icon: Icons.home_filled,
-                text: 'Discover',
-                onTap: () => _onTap(Screen.discover),
-                isActive: _currentScreen == Screen.discover,
-                fitSize: 1.3,
-              ),
-              _NavButton(
-                icon: Icons.favorite,
-                text: 'Favorite',
-                onTap: () => _onTap(Screen.favorite),
-                isActive: _currentScreen == Screen.favorite,
-                fitSize: 1.4,
-              ),
-              _NavButton(
-                icon: Icons.chat_bubble,
-                text: 'Messages',
-                onTap: () => _onTap(Screen.messaging),
-                isActive: _currentScreen == Screen.messaging,
-                fitSize: 1.1,
-              ),
-              _NavButton(
-                icon: Icons.person_2_rounded,
-                text: 'Profile',
-                onTap: () => _onTap(Screen.profile),
-                isActive: _currentScreen == Screen.profile,
-                fitSize: 1.7,
-              ),
-            ],
+       appBar: const AppTopNavigator(),
+        bottomNavigationBar: _showBottomNav ? Container(
+          color: AppColors.transparent,
+          constraints: const BoxConstraints.expand(height: 125),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.space_16, vertical: AppSpacing.space_36),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _NavButton(
+                  icon: Icons.home_filled,
+                  text: 'Discover',
+                  onTap: () => _onTap(Screen.discover),
+                  isActive: _currentScreen == Screen.discover,
+                  fitSize: 1.3,
+                ),
+                _NavButton(
+                  icon: Icons.favorite,
+                  text: 'Favorite',
+                  onTap: () => _onTap(Screen.favorite),
+                  isActive: _currentScreen == Screen.favorite,
+                  fitSize: 1.4,
+                ),
+                _NavButton(
+                  icon: Icons.chat_bubble,
+                  text: 'Messages',
+                  onTap: () => _onTap(Screen.messaging),
+                  isActive: _currentScreen == Screen.messaging,
+                  fitSize: 1.1,
+                ),
+                _NavButton(
+                  icon: Icons.person_2_rounded,
+                  text: 'Profile',
+                  onTap: () => _onTap(Screen.profile),
+                  isActive: _currentScreen == Screen.profile,
+                  fitSize: 1.7,
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
-      child: widget.navigationShell,
-    );
+        ):null,
+        bottomSheet: _currentScreen == Screen.messaging
+            ? ChatInputField(
+                onFocus: _onInputFocus,
+              )
+            : null,
+        child: widget.navigationShell);
   }
 }
 
@@ -149,12 +165,12 @@ class _NavButton extends StatelessWidget {
                     curve: Curves.easeInOutSine,
                     builder: (context, value, child) {
                       return SizedBox(
-                          width: ((value * 100)/fitSize), child: child);
+                          width: ((value * 100) / fitSize), child: child);
                     },
                   ),
               Icon(
                 icon,
-                color: isActive? AppColors.stone_100 : AppColors.main_500,
+                color: isActive ? AppColors.stone_100 : AppColors.main_500,
               ),
             ],
           ),

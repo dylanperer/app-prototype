@@ -21,6 +21,6 @@ class AppText extends StatelessWidget {
         style: TextStyle(
             color: color ?? AppColors.stone_600,
             fontSize: size ?? AppSpacing.space_16_5,
-            fontWeight: fontWeight ?? FontWeight.w600));
+            fontWeight: fontWeight ?? FontWeight.w400));
   }
 }

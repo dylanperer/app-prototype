@@ -20,14 +20,6 @@ class Main extends StatelessWidget {
       scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
-      theme: ThemeData(
-          useMaterial3: true,
-          fontFamily: 'Mulish',
-          colorScheme: lightColorScheme),
-      darkTheme: ThemeData(
-          useMaterial3: true,
-          fontFamily: 'Mulish',
-          colorScheme: darkColorScheme),
       routerConfig: AppRouter.buildRouter,
     );
   }

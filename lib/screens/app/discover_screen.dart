@@ -7,6 +7,6 @@ class DiscoverScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppText(text: 'yoyo',);
+    return AppText(text: '{"yoyo"}',);
   }
 }

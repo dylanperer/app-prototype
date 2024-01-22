@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
-import 'app_text.dart';
 
 class AppTextArea extends StatefulWidget {
   const AppTextArea({super.key});

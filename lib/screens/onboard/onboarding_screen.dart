@@ -51,6 +51,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
     super.initState();
   }
 
+  enum Hello {
+  awdawdawdwadwa{two:''},
+  awdawdawdwadwa{three:''},
+  awdawdawdwadwa{four:''jj}
+  }
+
   @override
   void dispose() {
     super.dispose();

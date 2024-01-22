@@ -62,7 +62,6 @@ class _AppTouchableOpacityState extends State<AppTouchableOpacity>
     return RepaintBoundary(
       child: GestureDetector(
               onTap: (){
-                FocusScope.of(context).unfocus();
                 _onTap();
               },
               onTapDown: (details) => onTapDown(),

@@ -2,7 +2,6 @@ import 'package:app/components/app_touchable_opacity.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
-import 'package:touchable_opacity/touchable_opacity.dart';
 
 import 'app_text.dart';
 
@@ -10,10 +9,12 @@ class AppInputField extends StatelessWidget {
   final String? hintText;
   final Icon? prefixIcon;
   final String? suffixText;
+  final Widget? suffix;
   final double? suffixMaxWidth;
   final VoidCallback? onSuffixTap;
   final ValueChanged<String>? onSubmitted;
   final TextEditingController? controller;
+  final FocusNode? focusNode;
 
   const AppInputField(
       {super.key,
@@ -22,11 +23,12 @@ class AppInputField extends StatelessWidget {
       this.suffixMaxWidth,
       this.onSuffixTap,
       this.prefixIcon,
-      this.onSubmitted, this.controller});
+      this.onSubmitted, this.controller, this.suffix, this.focusNode});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      focusNode: focusNode,
       controller: controller,
       onSubmitted: onSubmitted,
       style: const TextStyle(
@@ -69,7 +71,7 @@ class AppInputField extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                       )),
                 )
-              : null),
+              : suffix),
     );
   }
 

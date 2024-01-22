@@ -55,6 +55,7 @@ class AppColors {
 
   static const Color neutral_100 = Color(0xFFFFFFFF);
   static const Color transparent = Color(0x00000000);
+  static const Color background = Color(0xFFFFFBFE);
 
   static const pastel_01 = Color(0xFFFFE5E5);
   static const pastel_02 = Color(0xFFE0AED0);
