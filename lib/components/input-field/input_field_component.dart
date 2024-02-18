@@ -14,16 +14,19 @@ class InputFieldComponent extends StatelessWidget {
 
   const InputFieldComponent(
       {super.key,
-        this.hintText,
-        this.suffixText,
-        this.suffixMaxWidth,
-        this.onSuffixTap,
-        this.prefixIcon,
-        this.onSubmitted, this.controller, this.suffix, this.focusNode});
+      this.hintText,
+      this.suffixText,
+      this.suffixMaxWidth,
+      this.onSuffixTap,
+      this.prefixIcon,
+      this.onSubmitted,
+      this.controller,
+      this.suffix,
+      this.focusNode});
 
   @override
   Widget build(BuildContext context) {
-    return InputFieldView(appInputField: this, buildContext: context).getView();
+    return view(this, context);
   }
 
   Color iconColor(BuildContext context) {

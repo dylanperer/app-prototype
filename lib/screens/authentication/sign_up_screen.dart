@@ -74,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 AppText(
                   text: 'Sign up',
                   size: AppSpacing.space_28,
-                  fontWeight: FontWeight.w800,
+                  fontWeight: FontWeight.w700,
                 ),
                 AppText(
                   text: 'Hello there, lets get back into it.',
