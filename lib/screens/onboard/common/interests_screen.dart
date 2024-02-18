@@ -1,7 +1,6 @@
 import 'package:app/Services/app_uid_service.dart';
 import 'package:app/components/app_chip_group.dart';
 import 'package:app/components/app_info_text.dart';
-import 'package:app/components/app_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:uuid/uuid.dart';
@@ -9,6 +8,7 @@ import 'package:uuid/uuid.dart';
 import '../../../Services/app_service_register.dart';
 import '../../../components/app_chip.dart';
 import '../../../components/app_text.dart';
+import '../../../components/input-field/input_field_component.dart';
 import '../../../theme/app_spacing.dart';
 import '../onboarding_screen.dart';
 
@@ -88,7 +88,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
               alignment: Alignment.center,
               child: Column(
                 children: [
-                  AppInputField(
+                  InputFieldComponent(
                     controller: _texInputController,
                     hintText: 'hiking',
                     prefixIcon: const Icon(Icons.interests_rounded),

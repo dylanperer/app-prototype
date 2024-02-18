@@ -1,5 +1,5 @@
-import 'package:app/components/app_input_field.dart';
 import 'package:app/components/app_touchable_opacity.dart';
+import 'package:app/components/input-field/input_field_component.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +75,7 @@ class _ChatInputFieldState extends State<ChatInputField> with TickerProviderStat
             curve: Curves.easeInOutSine,
             builder: (context, value, child) => SizedBox(width: 100*value/0.8, child: child,)),
           Expanded(
-            child: AppInputField(
+            child: InputFieldComponent(
               focusNode: _focusNode,
               suffix: AppTouchableOpacity(
                   child: Container(

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:app/components/app_button.dart';
 import 'package:app/components/app_error.dart';
-import 'package:app/components/app_input_field.dart';
 import 'package:app/components/app_interactive_label.dart';
 import 'package:app/components/app_text.dart';
 import 'package:app/external/api.dart';
@@ -17,6 +16,7 @@ import 'package:go_router/go_router.dart';
 import '../../components/app_checkbox.dart';
 import '../../components/app_safe_area.dart';
 import '../../components/app_third_part_auth.dart';
+import '../../components/input-field/input_field_component.dart';
 import '../../icons/app_icons_icons.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -85,12 +85,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           Column(
             children: [
-              const AppInputField(
+              const InputFieldComponent(
                 hintText: 'email',
                 prefixIcon: Icon(Icons.alternate_email),
               ),
               const Gap(AppSpacing.space_16),
-              const AppInputField(
+              const InputFieldComponent(
                 hintText: 'password',
                 prefixIcon: Icon(
                   AppIcons.lock,

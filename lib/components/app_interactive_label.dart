@@ -22,7 +22,7 @@ class AppInteractiveLabel extends StatelessWidget {
             child: AppText(
               text: text,
               color: AppColors.main_400,
-              fontWeight: FontWeight.w800,
+              fontWeight: FontWeight.w700,
             )));
   }
 }

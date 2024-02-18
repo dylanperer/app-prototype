@@ -72,7 +72,7 @@ class _AppButtonState extends State<AppButton> {
                       text: widget.text,
                       size: AppSpacing.space_20,
                       color: AppColors.neutral_100,
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w700,
                     )
                         .animate(target: _isLoading ? 0 : 1)
                         .fade(duration: 300.ms, curve: Curves.easeInOut),
