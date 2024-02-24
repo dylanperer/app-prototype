@@ -1,8 +1,8 @@
 import 'package:app/components/app_chat_input.dart';
 import 'package:app/components/app_safe_area.dart';
-import 'package:app/components/app_text.dart';
 import 'package:app/components/app_top_navigator.dart';
 import 'package:app/components/app_touchable_opacity.dart';
+import 'package:app/components/text/text_component.dart';
 import 'package:app/nav/app_router.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/theme/app_spacing.dart';
@@ -154,7 +154,7 @@ class _NavButton extends StatelessWidget {
             children: [
               if (isActive) const Gap(AppSpacing.space_8),
               SizedBox(
-                child: AppText(
+                child: TextComponent(
                   fontWeight: FontWeight.w600,
                   text: text,
                   color: Colors.white,

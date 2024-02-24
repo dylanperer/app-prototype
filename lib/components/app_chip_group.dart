@@ -2,7 +2,6 @@ import 'package:app/components/app_chip.dart';
 import 'package:app/components/app_text.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/theme/app_spacing.dart';
-import 'package:app/utils/helpers/app_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

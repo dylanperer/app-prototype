@@ -1,12 +1,6 @@
-import 'package:app/components/input-field/input_field_component.dart';
-import 'package:flutter/material.dart';
+part of 'input_field_component.dart';
 
-import '../../theme/app_colors.dart';
-import '../../theme/app_spacing.dart';
-import '../app_text.dart';
-import '../app_touchable_opacity.dart';
-
-Widget view(InputFieldComponent component, BuildContext context) {
+Widget _inputFieldView(InputFieldComponent component, BuildContext context) {
   return TextField(
     focusNode: component.focusNode,
     controller: component.controller,
@@ -36,14 +30,14 @@ Widget view(InputFieldComponent component, BuildContext context) {
         prefixIconConstraints: BoxConstraints.tight(const Size(48, 24)),
         prefixIconColor: component.iconColor(context),
         suffixIcon: component.suffixText != null
-            ? AppTouchableOpacity(
+            ? TouchableOpacityComponent(
                 onTap: component.onSuffixTap,
                 child: Container(
                     color: Colors.transparent,
                     constraints: BoxConstraints.tight(
                         Size(component.suffixMaxWidth ?? 100, 24)),
                     alignment: Alignment.center,
-                    child: AppText(
+                    child: TextComponent(
                       text: component.suffixText ?? '',
                       color: AppColors.main_500,
                       fontWeight: FontWeight.w700,

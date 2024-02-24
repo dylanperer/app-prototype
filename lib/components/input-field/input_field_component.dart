@@ -1,5 +1,11 @@
-import 'package:app/components/input-field/input_field_view.dart';
+import 'package:app/components/text/text_component.dart';
+import 'package:app/components/touchable-opacity/touchable-opacity_component.dart';
 import 'package:flutter/material.dart';
+
+import '../../theme/app_colors.dart';
+import '../../theme/app_spacing.dart';
+
+part 'input_field_view.dart';
 
 class InputFieldComponent extends StatelessWidget {
   final String? hintText;
@@ -26,7 +32,7 @@ class InputFieldComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return view(this, context);
+    return _inputFieldView(this, context);
   }
 
   Color iconColor(BuildContext context) {

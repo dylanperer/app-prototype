@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:app/components/app_button.dart';
 import 'package:app/components/app_error.dart';
 import 'package:app/components/app_interactive_label.dart';
 import 'package:app/components/app_text.dart';
+import 'package:app/components/button/button_component.dart';
 import 'package:app/external/api.dart';
 import 'package:app/external/app_api.dart';
 import 'package:app/nav/app_router.dart';
@@ -104,7 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Align(
               alignment: Alignment.centerLeft,
               child: AppCheckBox(isDefaultChecked: true, textPostfix: 'Agree to Terms & Conditions',onChange: (value) => print(''))),
-          AppButton(
+          ButtonComponent(
             text: 'Join',
             onTap: () async => {await _onSignIn()},
           ),

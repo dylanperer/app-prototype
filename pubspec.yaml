@@ -52,6 +52,7 @@ dependencies:
   image_picker: ^1.0.7
   permission_handler: ^11.1.0
   flutter_keyboard_visibility: ^6.0.0
+  change_case: ^2.0.1
 
 dev_dependencies:
   flutter_test:

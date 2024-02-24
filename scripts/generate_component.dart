@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:change_case/change_case.dart';
 
 void main(List<String> arguments) {
   if (arguments.isEmpty) {
@@ -23,7 +24,7 @@ void main(List<String> arguments) {
     final foo = componentName.split('-');
 
 
-    componentFile.writeAsStringSync(componentFileContent(firstCharacterToUpper(componentName)));
+    componentFile.writeAsStringSync(componentFileContent(componentName));
     viewFile.writeAsStringSync(viewFileContent(componentName));
 
     print('Component files created successfully.');
@@ -35,13 +36,14 @@ void main(List<String> arguments) {
 String componentFileContent(String name) {
   return '''
 import 'package:flutter/material.dart';
+part '${name.toLowerCase()}_view.dart';
 
-class ${firstCharacterToUpper(name)}Component extends StatelessWidget {
+class ${name.toPascalCase()}Component extends StatelessWidget {
+  const ${name.toPascalCase()}Component({super.key});
+  
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // Your ${name} component UI here
-    );
+    return _${name.toCamelCase()}View(this, context);
   }
 }
 ''';
@@ -49,41 +51,10 @@ class ${firstCharacterToUpper(name)}Component extends StatelessWidget {
 
 String viewFileContent(String name) {
   return '''
-import 'package:flutter/material.dart'; 
-import 'package:app/components/$name/${name}_component.dart';
+part of '${name}_component.dart';
 
-Widget view(${firstCharacterToUpper(name)}Component component, BuildContext context) {
+Widget _${name.replaceAll('_', '').toCamelCase()}View(${(name).replaceAll('_', '').toPascalCase()}Component component, BuildContext context) {
   return Placeholder();
 }
 ''';
-}
-
-
-String firstCharacterToUpper(String input) {
-  // Split the input string by '-'
-  List<String> words = input.split('-');
-
-  // Capitalize the first letter of each word
-  List<String> capitalizedWords = words.map((word) {
-    if (word.isEmpty) return word;
-    return word.substring(0, 1).toUpperCase() + word.substring(1);
-  }).toList();
-
-  // Join the capitalized words
-  String result = capitalizedWords.join('');
-
-  return result;
-}
-
-String toCamelCase(String input) {
-  // Split the input string by non-alphanumeric characters
-  List<String> words = input.split(RegExp(r'[^a-zA-Z0-9]'));
-
-  // Capitalize the first letter of the first word and make the rest of the words capitalized
-  String result = words[0].toLowerCase();
-  for (int i = 1; i < words.length; i++) {
-    result += words[i][0].toUpperCase() + words[i].substring(1).toLowerCase();
-  }
-
-  return result;
 }
