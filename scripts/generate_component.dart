@@ -8,7 +8,15 @@ void main(List<String> arguments) {
   }
 
   final componentName = arguments[0];
-  final componentDirectory = Directory('../lib/components/$componentName');
+  bool isScreen = false;
+
+  if (arguments[1] == '-s') {
+    isScreen = true;
+  }
+
+  Directory componentDirectory = isScreen
+      ? Directory('../lib/screens/$componentName')
+      : Directory('../lib/components/$componentName');
 
   if (componentDirectory.existsSync()) {
     print('Directory already exists.');
@@ -18,13 +26,13 @@ void main(List<String> arguments) {
   try {
     componentDirectory.createSync(recursive: true);
 
-    final componentFile = File('${componentDirectory.path}/${componentName}_component.dart');
-    final viewFile = File('${componentDirectory.path}/${componentName}_view.dart');
+    final componentFile =
+        File('${componentDirectory.path}/${componentName}_component.dart');
+    final viewFile =
+        File('${componentDirectory.path}/${componentName}_view.dart');
 
-    final foo = componentName.split('-');
-
-
-    componentFile.writeAsStringSync(componentFileContent(componentName));
+    componentFile.writeAsStringSync(
+        componentFileContent(componentName, isScreen ? 'screen' : 'component'));
     viewFile.writeAsStringSync(viewFileContent(componentName));
 
     print('Component files created successfully.');
@@ -33,13 +41,13 @@ void main(List<String> arguments) {
   }
 }
 
-String componentFileContent(String name) {
+String componentFileContent(String name, String type) {
   return '''
 import 'package:flutter/material.dart';
 part '${name.toLowerCase()}_view.dart';
 
-class ${name.toPascalCase()}Component extends StatelessWidget {
-  const ${name.toPascalCase()}Component({super.key});
+class ${name.toPascalCase()}${type.toPascalCase()} extends StatelessWidget {
+  const ${name.toPascalCase()}${type.toPascalCase()}({super.key});
   
   @override
   Widget build(BuildContext context) {

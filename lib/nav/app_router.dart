@@ -1,13 +1,13 @@
 import 'package:app/components/bottom-navigator/bottom-navigator_component.dart';
-import 'package:app/screens/app/match/matches_screen.dart';
-import 'package:app/screens/app/messaging/messaging_screen.dart';
-import 'package:app/screens/app/settings/settings_screen.dart';
-import 'package:app/screens/authentication/sign_in_screen.dart';
-import 'package:app/screens/authentication/sign_up_screen.dart';
+import 'package:app/screens/discover/discover_component.dart';
+import 'package:app/screens/matches/matches_component.dart';
+import 'package:app/screens/messaging/messaging_component.dart';
 import 'package:app/screens/onboard/onboarding_screen.dart';
+import 'package:app/screens/settings/settings_component.dart';
+import 'package:app/screens/sign-in/sign-in_component.dart';
+import 'package:app/screens/sign-up/sign-up_component.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../screens/app/discover_screen.dart';
 
 enum AppRoute { signIn, signUp, onboarding, discover, matches, messaging, profile }
 
@@ -68,12 +68,12 @@ class AppRouter {
         GoRoute(
             path: _signInRoute,
             pageBuilder: (context, state) {
-              return pageTransition(state.pageKey, const SignInScreen());
+              return pageTransition(state.pageKey, const SignInComponent());
             }),
         GoRoute(
             path: _signUpRoute,
             pageBuilder: (context, state) {
-              return pageTransition(state.pageKey, const SignUpScreen());
+              return pageTransition(state.pageKey, const SignUpComponent());
             }),
         GoRoute(
             path: _onboardingRoute,
@@ -94,25 +94,25 @@ class AppRouter {
                           path: _discover,
                           pageBuilder: (context, state) {
                             return pageTransition(
-                                state.pageKey, const DiscoverScreen());
+                                state.pageKey, const DiscoverComponent());
                           }),
                       GoRoute(
                           path: _matches,
                           pageBuilder: (context, state) {
                             return pageTransition(
-                                state.pageKey, const MatchesScreen());
+                                state.pageKey, const MatchesComponent());
                           }),
                       GoRoute(
                           path: _messaging,
                           pageBuilder: (context, state) {
                             return pageTransition(
-                                state.pageKey, const MessagingScreen());
+                                state.pageKey, const MessagingComponent());
                           }),
                       GoRoute(
                           path: _profile,
                           pageBuilder: (context, state) {
                             return pageTransition(
-                                state.pageKey, const SettingsScreen());
+                                state.pageKey, const SettingsComponent());
                           })
                     ])
                   ])
