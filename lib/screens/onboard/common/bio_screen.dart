@@ -1,16 +1,11 @@
-import 'package:app/components/app_error.dart';
-import 'package:app/components/app_info_text.dart';
-import 'package:app/components/app_onboarding_date_selector.dart';
-import 'package:app/components/app_text_area.dart';
-import 'package:app/theme/app_colors.dart';
+import 'package:app/components/error/error_component.dart';
+import 'package:app/components/info-text/info-text_component.dart';
+import 'package:app/components/text-area/text-area_component.dart';
+import 'package:app/components/text/text_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-
-import '../../../components/app_text.dart';
-import '../../../components/app_touchable_opacity.dart';
 import '../../../theme/app_spacing.dart';
 import '../onboarding_screen.dart';
 
@@ -30,14 +25,14 @@ class BioScreen extends StatelessWidget {
         children: [
           const Column(
             children: [
-              AppText(
+              TextComponent(
                 text: 'Introduce yourself.',
                 textAlign: TextAlign.center,
                 size: AppSpacing.space_19,
                 fontWeight: FontWeight.w800,
               ),
               Gap(AppSpacing.space_4),
-              AppInfo(
+              InfoTextComponent(
                 text:
                     "Let everyone know why you're here and what you're looking for.",
               )
@@ -47,8 +42,8 @@ class BioScreen extends StatelessWidget {
               alignment: Alignment.center,
               child: Column(
                 children: <Widget>[
-                  AppTextArea(),
-                  AppError(error: error)
+                  TextAreaComponent(),
+                  ErrorComponent(error: error)
                 ],
               )),
           const SizedBox(

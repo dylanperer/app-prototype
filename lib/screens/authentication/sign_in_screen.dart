@@ -1,8 +1,10 @@
-import 'package:app/components/app_error.dart';
-import 'package:app/components/app_interactive_label.dart';
 import 'package:app/components/button/button_component.dart';
 import 'package:app/components/checkbox/checkbox_component.dart';
+import 'package:app/components/error/error_component.dart';
+import 'package:app/components/interactive-label/interactive-label_component.dart';
+import 'package:app/components/safe-area/safe-area_component.dart';
 import 'package:app/components/text/text_component.dart';
+import 'package:app/components/third-party-authentication/third-party-authentication_component.dart';
 import 'package:app/external/api.dart';
 import 'package:app/external/app_api.dart';
 import 'package:app/nav/app_router.dart';
@@ -12,8 +14,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../components/app_safe_area.dart';
-import '../../components/app_third_part_auth.dart';
 import '../../components/input-field/input_field_component.dart';
 import '../../icons/app_icons_icons.dart';
 
@@ -58,7 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AppSafeArea(
+    return SafeAreaComponent(
       child: Flex(
         direction: Axis.vertical,
         mainAxisSize: MainAxisSize.min,
@@ -100,7 +100,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               const Gap(AppSpacing.space_16),
-              AppError(error: _error)
+              ErrorComponent(error: _error)
             ],
           ),
           Align(
@@ -110,13 +110,13 @@ class _SignInScreenState extends State<SignInScreen> {
             text: 'Sign in',
             onTap: () async => {await _onSignIn()},
           ),
-          AppThirdPartAuth(
+          ThirdPartyAuthenticationComponent(
             prefix: const TextComponent(text: 'Or, login with...'),
             postfix: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const TextComponent(text: 'Don\'t have one yet? '),
-                AppInteractiveLabel(
+                InteractiveLabelComponent(
                   text: 'Create account',
                   onTap: () {
                     context.go(AppRouter.route(AppRoute.signUp));

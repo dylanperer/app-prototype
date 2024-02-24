@@ -1,13 +1,11 @@
 import 'package:app/Services/app_uid_service.dart';
-import 'package:app/components/app_chip_group.dart';
-import 'package:app/components/app_info_text.dart';
+import 'package:app/components/chip-group/chip-group_component.dart';
+import 'package:app/components/chip/chip_component.dart';
+import 'package:app/components/text/text_component.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../../Services/app_service_register.dart';
-import '../../../components/app_chip.dart';
-import '../../../components/app_text.dart';
 import '../../../components/input-field/input_field_component.dart';
 import '../../../theme/app_spacing.dart';
 import '../onboarding_screen.dart';
@@ -23,7 +21,7 @@ class InterestsScreen extends StatefulWidget {
 }
 
 class _InterestsScreenState extends State<InterestsScreen> {
-  List<AppChip> _interests = [];
+  List<ChipComponent> _interests = [];
   final TextEditingController _texInputController = TextEditingController();
 
   @override
@@ -31,7 +29,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
     super.initState();
     for (var c in widget.onBoardSettings.interests) {
       String uid = widget.uidService.timeUid();
-      _interests.add(AppChip(text: c, id: uid, onDelete: ()=> onRemoveInterest(uid)));
+      _interests.add(ChipComponent(text: c, id: uid, onDelete: ()=> onRemoveInterest(uid)));
     }
   }
 
@@ -43,7 +41,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
 
   void onAddInterest(String value){
     String uid = widget.uidService.timeUid();
-    _interests.add(AppChip(text: value, id: uid, onDelete: ()=> onRemoveInterest(uid)));
+    _interests.add(ChipComponent(text: value, id: uid, onDelete: ()=> onRemoveInterest(uid)));
     widget.onBoardSettings.interests.add(value);
     setState(() {
       _interests = _interests;
@@ -52,7 +50,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
   }
 
   void onRemoveInterest(String id){
-    AppChip? interestToRemove = _interests.firstWhere((c) => c.id == id);
+    ChipComponent? interestToRemove = _interests.firstWhere((c) => c.id == id);
 
     _interests.remove(interestToRemove);
     widget.onBoardSettings.interests.remove(interestToRemove.text);
@@ -72,14 +70,14 @@ class _InterestsScreenState extends State<InterestsScreen> {
         children: [
           const Column(
             children: [
-              AppText(
+              TextComponent(
                 text: "Share your interests.",
                 textAlign: TextAlign.center,
                 size: AppSpacing.space_19,
                 fontWeight: FontWeight.w800,
               ),
               Gap(AppSpacing.space_4),
-              AppInfo(
+              TextComponent(
                 text: 'You can always add more later.',
               )
             ],
@@ -95,7 +93,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                     onSubmitted: onAddInterest,
                   ),
                   const Gap(AppSpacing.space_16),
-                  AppChipGroup(interests: _interests,),
+                  ChipGroupComponent(interests: _interests,),
                 ],
               )),
           const SizedBox(

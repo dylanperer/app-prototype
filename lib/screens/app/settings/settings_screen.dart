@@ -1,4 +1,4 @@
-import 'package:app/components/app_text.dart';
+import 'package:app/components/text/text_component.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -11,6 +11,6 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder(child: AppText(text: 'settings',),);
+    return const Placeholder(child: TextComponent(text: 'settings',),);
   }
 }

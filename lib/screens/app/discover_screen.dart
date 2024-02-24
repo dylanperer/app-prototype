@@ -1,5 +1,4 @@
-import 'package:app/components/app_safe_area.dart';
-import 'package:app/components/app_text.dart';
+import 'package:app/components/text/text_component.dart';
 import 'package:flutter/material.dart';
 
 class DiscoverScreen extends StatelessWidget {
@@ -7,6 +6,6 @@ class DiscoverScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppText(text: '{"yoyo"}',);
+    return const TextComponent(text: '{"yoyo"}',);
   }
 }

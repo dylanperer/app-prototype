@@ -1,5 +1,5 @@
-import 'package:app/components/app_text.dart';
-import 'package:app/components/app_touchable_opacity.dart';
+import 'package:app/components/text/text_component.dart';
+import 'package:app/components/touchable-opacity/touchable-opacity_component.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +87,7 @@ class AppUi {
       barrierDismissible: configuration.nonDismissible ?? true,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: AppText(
+          title: TextComponent(
             text: configuration.title,
             textAlign: TextAlign.center,
             size: AppSpacing.space_19,
@@ -96,20 +96,20 @@ class AppUi {
           content: configuration.content,
           actions: [
             if (configuration.secondaryButton != null)
-              AppTouchableOpacity(
+              TouchableOpacityComponent(
                   onTap: () => configuration.secondaryButton?.onTap(),
                   child: Container(
                     color: Colors.red,
-                    child: AppText(
+                    child: TextComponent(
                       text: configuration.secondaryButton?.text,
                     ),
                   )),
-            AppTouchableOpacity(
+            TouchableOpacityComponent(
                 onTap: () => configuration.primaryButton.onTap(),
                 child: Container(
                   padding: const EdgeInsets.all(AppSpacing.space_16),
                   color: Colors.transparent,
-                  child: AppText(
+                  child: TextComponent(
                     text: configuration.primaryButton.text,
                     color: AppColors.main_500,
                   ),

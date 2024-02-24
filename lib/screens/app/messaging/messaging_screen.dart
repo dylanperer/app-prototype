@@ -1,4 +1,4 @@
-import 'package:app/components/app_text.dart';
+import 'package:app/components/text/text_component.dart';
 import 'package:flutter/material.dart';
 
 class MessagingScreen extends StatefulWidget {
@@ -11,6 +11,6 @@ class MessagingScreen extends StatefulWidget {
 class _MessagingScreenState extends State<MessagingScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder(child: AppText(text: 'messaging',),);
+    return const Placeholder(child: TextComponent(text: 'messaging',),);
   }
 }

@@ -1,4 +1,6 @@
-import 'package:app/components/app_touchable_opacity.dart';
+import 'package:app/components/rounded-button/rounded-button_component.dart';
+import 'package:app/components/safe-area/safe-area_component.dart';
+import 'package:app/components/touchable-opacity/touchable-opacity_component.dart';
 import 'package:app/screens/onboard/common/bio_screen.dart';
 import 'package:app/screens/onboard/common/dob_screen.dart';
 import 'package:app/screens/onboard/common/gender_screen.dart';
@@ -10,9 +12,6 @@ import 'package:app/utils/constants/app_errors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../../components/app_rounded_button.dart';
-import '../../components/app_safe_area.dart';
 import 'common/preferred_gender.dart';
 
 class OnBoardingSettings {
@@ -51,7 +50,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
     super.initState();
   }
 
-
   @override
   void dispose() {
     super.dispose();
@@ -60,11 +58,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
     _pageViewAnimController.dispose();
   }
 
-  Future _onContinue() async{
+  Future _onContinue() async {
     _isTransitioning = true;
 
-    if(_currentPage == 1){//dob
-      if(widget._onBoardSettings.dob == null){
+    if (_currentPage == 1) {
+      //dob
+      if (widget._onBoardSettings.dob == null) {
         setState(() {
           _dobError = AppErrors.emptyDob;
         });
@@ -72,8 +71,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
       }
     }
 
-    if(_currentPage == 3){//dob
-      if(widget._onBoardSettings.preferredGender == null){
+    if (_currentPage == 3) {
+      //dob
+      if (widget._onBoardSettings.preferredGender == null) {
         setState(() {
           _preferredGenderError = AppErrors.emptyPreferredGender;
         });
@@ -113,7 +113,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
   }
 
   void onBack() {
-    if(_currentPage == 0) return;
+    if (_currentPage == 0) return;
 
     _isTransitioning = true;
 
@@ -136,7 +136,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
 
   @override
   Widget build(BuildContext context) {
-    return AppSafeArea(
+    return SafeAreaComponent(
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -188,7 +188,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
             right: 0,
             child: SizedBox(
               child: _currentPage == 5
-                  ? AppRoundedButton(
+                  ? RoundedButtonComponent(
                       icon: Icons.check,
                       onTap: onComplete,
                     )
@@ -196,9 +196,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                           controller: _continueButtonAnimController,
                           autoPlay: false)
                       .fadeIn(duration: 600.ms)
-                  : AppRoundedButton(
+                  : RoundedButtonComponent(
                       onTap: () async {
-                        if(_isTransitioning == true) return;
+                        if (_isTransitioning == true) return;
                         _isTransitioning = true;
                         await _onContinue();
                         _isTransitioning = false;
@@ -214,7 +214,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
             top: 0,
             left: 0,
             child: RepaintBoundary(
-              child: AppTouchableOpacity(
+              child: TouchableOpacityComponent(
                       onTap: onBack,
                       child: Container(
                         color: Colors.transparent,

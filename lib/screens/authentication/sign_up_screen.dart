@@ -1,9 +1,12 @@
 import 'dart:convert';
 
-import 'package:app/components/app_error.dart';
-import 'package:app/components/app_interactive_label.dart';
-import 'package:app/components/app_text.dart';
 import 'package:app/components/button/button_component.dart';
+import 'package:app/components/checkbox/checkbox_component.dart';
+import 'package:app/components/error/error_component.dart';
+import 'package:app/components/interactive-label/interactive-label_component.dart';
+import 'package:app/components/safe-area/safe-area_component.dart';
+import 'package:app/components/text/text_component.dart';
+import 'package:app/components/third-party-authentication/third-party-authentication_component.dart';
 import 'package:app/external/api.dart';
 import 'package:app/external/app_api.dart';
 import 'package:app/nav/app_router.dart';
@@ -13,9 +16,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../components/app_checkbox.dart';
-import '../../components/app_safe_area.dart';
-import '../../components/app_third_part_auth.dart';
 import '../../components/input-field/input_field_component.dart';
 import '../../icons/app_icons_icons.dart';
 
@@ -57,7 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AppSafeArea(
+    return SafeAreaComponent(
       child: Flex(
         direction: Axis.vertical,
         mainAxisSize: MainAxisSize.min,
@@ -71,12 +71,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppText(
+                TextComponent(
                   text: 'Sign up',
                   size: AppSpacing.space_28,
                   fontWeight: FontWeight.w700,
                 ),
-                AppText(
+                TextComponent(
                   text: 'Hello there, lets get back into it.',
                   size: AppSpacing.space_18,
                 )
@@ -98,23 +98,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               const Gap(AppSpacing.space_16),
-              AppError(error: _error)
+              ErrorComponent(error: _error)
             ],
           ),
           Align(
               alignment: Alignment.centerLeft,
-              child: AppCheckBox(isDefaultChecked: true, textPostfix: 'Agree to Terms & Conditions',onChange: (value) => print(''))),
+              child: CheckboxComponent(isDefaultChecked: true, textPostfix: 'Agree to Terms & Conditions',onChange: (value) => print(''))),
           ButtonComponent(
             text: 'Join',
             onTap: () async => {await _onSignIn()},
           ),
-          AppThirdPartAuth(
-            prefix: const AppText(text: 'Or, login with...'),
+          ThirdPartyAuthenticationComponent(
+            prefix: const TextComponent(text: 'Or, login with...'),
             postfix: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const AppText(text: 'Already have an account? '),
-                AppInteractiveLabel(
+                const TextComponent(text: 'Already have an account? '),
+                InteractiveLabelComponent(
                   text: 'Sign in',
                   onTap: () {
                     context.go(AppRouter.route(AppRoute.signIn));

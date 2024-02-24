@@ -1,13 +1,12 @@
-import 'package:app/components/app_error.dart';
-import 'package:app/components/app_info_text.dart';
-import 'package:app/components/app_onboarding_date_selector.dart';
-import 'package:app/components/app_radio_group.dart';
+import 'package:app/components/error/error_component.dart';
+import 'package:app/components/info-text/info-text_component.dart';
+import 'package:app/components/radio-button-group/radio-button-group_component.dart';
+import 'package:app/components/text/text_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
-import '../../../components/app_text.dart';
 import '../../../theme/app_spacing.dart';
 import '../onboarding_screen.dart';
 
@@ -32,21 +31,21 @@ class PreferredGender extends StatelessWidget {
         children: [
           const Column(
             children: [
-              AppText(
+              TextComponent(
                 text: 'Who do you want to be shown to?',
                 textAlign: TextAlign.center,
                 size: AppSpacing.space_19,
                 fontWeight: FontWeight.w800,
               ),
               Gap(AppSpacing.space_4),
-              AppInfo(
+              InfoTextComponent(
                 text: 'You can further customise this in the profile section.',
               )
             ],
           ),
           Column(
             children: [
-              AppRadioGroup(
+              RadioButtonGroupComponent(
                 defaultItemId: onBoardSettings.preferredGender,
                 items: const {
                   'men': 'Men.',
@@ -60,7 +59,7 @@ class PreferredGender extends StatelessWidget {
                   onBoardSettings.preferredGender = id;
                 },
               ),
-              AppError(error: error)
+              ErrorComponent(error: error)
             ],
           ),
           const SizedBox(

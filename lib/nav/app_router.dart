@@ -1,4 +1,4 @@
-import 'package:app/components/app_bottom_navigator.dart';
+import 'package:app/components/bottom-navigator/bottom-navigator_component.dart';
 import 'package:app/screens/app/match/matches_screen.dart';
 import 'package:app/screens/app/messaging/messaging_screen.dart';
 import 'package:app/screens/app/settings/settings_screen.dart';
@@ -86,7 +86,7 @@ class AppRouter {
             routes: [
               StatefulShellRoute.indexedStack(
                   builder: (context, state, navigationShell) {
-                    return AppBottomNavigator(navigationShell: navigationShell);
+                    return BottomNavigatorComponent(navigationShell: navigationShell);
                   },
                   branches: [
                     StatefulShellBranch(navigatorKey: _appNavKey, routes: [

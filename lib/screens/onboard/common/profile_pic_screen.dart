@@ -1,7 +1,9 @@
 import 'dart:io';
 
-import 'package:app/components/app_error.dart';
-import 'package:app/components/app_info_text.dart';
+import 'package:app/components/error/error_component.dart';
+import 'package:app/components/info-text/info-text_component.dart';
+import 'package:app/components/text/text_component.dart';
+import 'package:app/components/touchable-opacity/touchable-opacity_component.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/utils/helpers/app_ui.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,6 @@ import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../components/app_text.dart';
-import '../../../components/app_touchable_opacity.dart';
 import '../../../theme/app_spacing.dart';
 import '../onboarding_screen.dart';
 
@@ -52,7 +52,7 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> with Ticker
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const AppTouchableOpacity(
+              const TouchableOpacityComponent(
                 // onTap: () async => await _onPickImageFromGallery(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -63,14 +63,14 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> with Ticker
                       size: AppSpacing.space_36,
                       color: AppColors.main_400,
                     ),
-                    AppText(
+                    TextComponent(
                       text: 'Camera',
                       fontWeight: FontWeight.w700,
                     )
                   ],
                 ),
               ),
-              AppTouchableOpacity(
+              TouchableOpacityComponent(
                 onTap: () async => await _onPickImageFromGallery(),
                 child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +81,7 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> with Ticker
                       size: AppSpacing.space_36,
                       color: AppColors.main_400,
                     ),
-                    AppText(
+                    TextComponent(
                       text: 'Browse',
                       fontWeight: FontWeight.w700,
                     )
@@ -114,7 +114,7 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> with Ticker
             context: context,
             nonDismissible: true,
             title: 'Sorry, permissions not met.',
-            content: const AppText(
+            content: const TextComponent(
               text: 'Please grant access to gallery and photos.',
               textAlign: TextAlign.center,
             ),
@@ -137,14 +137,14 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> with Ticker
         children: [
           const Column(
             children: [
-              AppText(
+              TextComponent(
                 text: 'Choose your best photo.',
                 textAlign: TextAlign.center,
                 size: AppSpacing.space_19,
                 fontWeight: FontWeight.w800,
               ),
               Gap(AppSpacing.space_4),
-              AppInfo(
+              InfoTextComponent(
                 text: "You can add more photos in the profile section",
               )
             ],
@@ -153,7 +153,7 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> with Ticker
               alignment: Alignment.center,
               child: Column(
                 children: <Widget>[
-                  AppTouchableOpacity(
+                  TouchableOpacityComponent(
                       onTap: _onProfilePicturePlaceholderTap,
                       child: _profilePicture != null ? ClipRRect(
                         borderRadius: BorderRadius.circular(AppSpacing.max),
@@ -170,7 +170,7 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> with Ticker
                         height: 200,
                         width: 200,
                       )),
-                  AppError(error: widget.error)
+                  ErrorComponent(error: widget.error)
                 ],
               )),
           const SizedBox(

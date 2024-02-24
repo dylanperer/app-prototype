@@ -1,12 +1,11 @@
-import 'package:app/components/app_interactive_label.dart';
+import 'package:app/components/info-text/info-text_component.dart';
+import 'package:app/components/interactive-label/interactive-label_component.dart';
+import 'package:app/components/onboarding-gender-toggle/onboarding-gender-toggle_component.dart';
+import 'package:app/components/text/text_component.dart';
 import 'package:app/utils/helpers/app_ui.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../components/app_info_text.dart';
-import '../../../components/app_onboarding_gender_toggle.dart';
-import '../../../components/app_text.dart';
 import '../../../theme/app_spacing.dart';
 import '../onboarding_screen.dart';
 
@@ -51,19 +50,19 @@ class GenderScreen extends StatelessWidget {
         children: [
           const Column(
             children: [
-              AppText(
+              TextComponent(
                 text: 'Which gender do you identify with?',
                 textAlign: TextAlign.center,
                 size: AppSpacing.space_19,
                 fontWeight: FontWeight.w800,
               ),
               Gap(AppSpacing.space_4),
-              AppInfo(text: 'Tap \'More options\' for additional genders.')
+              InfoTextComponent(text: 'Tap \'More options\' for additional genders.')
             ],
           ),
           Column(
             children: [
-              AppOnboardingGenderToggle(
+              OnboardingGenderToggleComponent(
                   isDefaultChecked: onBoardSettings.gender == 'M',
                   onToggle: (isToggled) {
                     if (isToggled) {
@@ -73,7 +72,7 @@ class GenderScreen extends StatelessWidget {
                     }
                   }),
               const Gap(AppSpacing.space_20),
-              AppInteractiveLabel(
+              InteractiveLabelComponent(
                 text: 'More options',
                 onTap: () {
                   AppUi.openBottomSheet(BottomSheetConfiguration(context: context, items: [], snapPoints: AppUi.defaultBottomSheetSnapPoints));
