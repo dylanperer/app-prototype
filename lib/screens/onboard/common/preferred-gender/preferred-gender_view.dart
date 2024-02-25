@@ -1,29 +1,7 @@
-import 'package:app/components/error/error_component.dart';
-import 'package:app/components/info-text/info-text_component.dart';
-import 'package:app/components/radio-button-group/radio-button-group_component.dart';
-import 'package:app/components/text/text_component.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:gap/gap.dart';
+part of 'preferred-gender_screen.dart';
 
-import '../../../theme/app_spacing.dart';
-import '../onboarding_screen.dart';
-
-class PreferredGender extends StatelessWidget {
-  final OnBoardingSettings onBoardSettings;
-  final Function(String? value)? onPreferredGenderChange;
-  final String? error;
-
-  const PreferredGender(
-      {super.key,
-      required this.onBoardSettings,
-      this.error,
-      this.onPreferredGenderChange});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
+Widget _preferredGenderView(PreferredGenderScreen screen, BuildContext context) {
+  return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.space_72, horizontal: 0),
       child: Flex(
         direction: Axis.vertical,
@@ -46,20 +24,20 @@ class PreferredGender extends StatelessWidget {
           Column(
             children: [
               RadioButtonGroupComponent(
-                defaultItemId: onBoardSettings.preferredGender,
+                defaultItemId: screen.onBoardSettings.preferredGender,
                 items: const {
                   'men': 'Men.',
                   'women': 'Women.',
                   'both': 'Both men and women.',
                 },
                 onChange: (id) {
-                  if (onPreferredGenderChange != null) {
-                    onPreferredGenderChange!(id);
+                  if (screen.onPreferredGenderChange != null) {
+                    screen.onPreferredGenderChange!(id);
                   }
-                  onBoardSettings.preferredGender = id;
+                  screen.onBoardSettings.preferredGender = id;
                 },
               ),
-              ErrorComponent(error: error)
+              ErrorComponent(error: screen.error)
             ],
           ),
           const SizedBox(
@@ -69,5 +47,4 @@ class PreferredGender extends StatelessWidget {
         ],
       ),
     );
-  }
 }

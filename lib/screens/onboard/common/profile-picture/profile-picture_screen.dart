@@ -1,11 +1,5 @@
 import 'dart:io';
 
-import 'package:app/components/error/error_component.dart';
-import 'package:app/components/info-text/info-text_component.dart';
-import 'package:app/components/text/text_component.dart';
-import 'package:app/components/touchable-opacity/touchable-opacity_component.dart';
-import 'package:app/theme/app_colors.dart';
-import 'package:app/utils/helpers/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,8 +7,16 @@ import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../theme/app_spacing.dart';
-import '../onboarding_screen.dart';
+import '../../../../components/error/error_component.dart';
+import '../../../../components/info-text/info-text_component.dart';
+import '../../../../components/text/text_component.dart';
+import '../../../../components/touchable-opacity/touchable-opacity_component.dart';
+import '../../../../theme/app_colors.dart';
+import '../../../../theme/app_spacing.dart';
+import '../../../../utils/helpers/app_ui.dart';
+import '../onboarding/onboarding_screen.dart';
+
+part 'profile-picture_view.dart';
 
 class ProfilePictureScreen extends StatefulWidget {
   final OnBoardingSettings onBoardSettings;
@@ -27,10 +29,12 @@ class ProfilePictureScreen extends StatefulWidget {
   State<ProfilePictureScreen> createState() => _ProfilePictureScreenState();
 }
 
-class _ProfilePictureScreenState extends State<ProfilePictureScreen> with TickerProviderStateMixin{
+class _ProfilePictureScreenState extends State<ProfilePictureScreen>
+    with TickerProviderStateMixin {
   File? _profilePicture;
   bool _showFemaleAvatar = true;
-  late final AnimationController _animationController = AnimationController(vsync: this, duration: Animate.defaultDuration);
+  late final AnimationController _animationController =
+      AnimationController(vsync: this, duration: Animate.defaultDuration);
 
   @override
   void didUpdateWidget(covariant ProfilePictureScreen oldWidget) {
@@ -128,57 +132,6 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> with Ticker
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          vertical: AppSpacing.space_72, horizontal: 0),
-      child: Flex(
-        direction: Axis.vertical,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Column(
-            children: [
-              TextComponent(
-                text: 'Choose your best photo.',
-                textAlign: TextAlign.center,
-                size: AppSpacing.space_19,
-                fontWeight: FontWeight.w800,
-              ),
-              Gap(AppSpacing.space_4),
-              InfoTextComponent(
-                text: "You can add more photos in the profile section",
-              )
-            ],
-          ),
-          Align(
-              alignment: Alignment.center,
-              child: Column(
-                children: <Widget>[
-                  TouchableOpacityComponent(
-                      onTap: _onProfilePicturePlaceholderTap,
-                      child: _profilePicture != null ? ClipRRect(
-                        borderRadius: BorderRadius.circular(AppSpacing.max),
-                        child: Image.file(
-                          _profilePicture!,
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.fill,
-                        ).animate(controller: _animationController, autoPlay: false).fadeIn(duration: 600.ms, curve: Curves.easeInSine),
-                      ):  SvgPicture.asset(
-                        _showFemaleAvatar
-                            ? 'assets/svg/female_avatar.svg'
-                            : 'assets/svg/male_avatar.svg',
-                        height: 200,
-                        width: 200,
-                      )),
-                  ErrorComponent(error: widget.error)
-                ],
-              )),
-          const SizedBox(
-            width: AppSpacing.space_80,
-            height: AppSpacing.space_80,
-          )
-        ],
-      ),
-    );
+    return _profilePictureView(widget, this, context);
   }
 }

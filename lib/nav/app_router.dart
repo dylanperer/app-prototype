@@ -2,7 +2,7 @@ import 'package:app/components/bottom-navigator/bottom-navigator_component.dart'
 import 'package:app/screens/discover/discover_component.dart';
 import 'package:app/screens/matches/matches_component.dart';
 import 'package:app/screens/messaging/messaging_component.dart';
-import 'package:app/screens/onboard/onboarding_screen.dart';
+import 'package:app/screens/onboard/common/onboarding/onboarding_screen.dart';
 import 'package:app/screens/settings/settings_component.dart';
 import 'package:app/screens/sign-in/sign-in_component.dart';
 import 'package:app/screens/sign-up/sign-up_component.dart';
@@ -78,7 +78,7 @@ class AppRouter {
         GoRoute(
             path: _onboardingRoute,
             pageBuilder: (context, state) {
-              return pageTransition(state.pageKey, OnBoardingScreen());
+              return pageTransition(state.pageKey, OnboardingScreen());
             }),
         GoRoute(
             path: _app,
